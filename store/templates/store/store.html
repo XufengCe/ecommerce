@@ -1,0 +1,797 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block navigation %}
+
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url 'store' %}">Home <span class="sr-only">(current)</span></a>
+    </li>
+    <br>
+    <br>
+    <li class="nav-item">
+      <a class="nav-link" data-scroll="true" href="#Best Sell">Best Sell</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-scroll="true" href="#Hotdogs">HotDogs</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-scroll="true" href="#Soups and Salads">Soups and Salads</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-scroll="true" href="#Desserts">Desserts</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-scroll="true" href="#Sandwiches">Sandwiches</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-scroll="true" href="#Drinks">Drinks</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-scroll="true" href="#Sides">Side Dishes</a>
+    </li>
+    <li class="nav-itemW">
+      <a class="nav-link" data-scroll="true" href="#Breakfast">Breakfast</a>
+    </li>
+
+{% endblock %}
+{% block content %}
+
+  <H2>Hot Dogs</H2>
+  <section id="Hotdogs">
+  <div class="row">
+  {% for product in hotdogs %} 
+      <div class="col-lg-3">
+          <img class="thumbnail" src="{{product.imageURL}}">
+          <div class="box-element product">
+              <h6><Strong>{{product.name}}</Strong></h6>
+              <hr>
+              <button data-toggle="modal" data-target="#productModal" data-product={{product.id}} data-action="add" data-price={{product.price}} data-category="Hotdogs" class="btn btn-outline-secondary add-btn update-side">Add to Cart</button>
+              {% comment %} <a class="btn btn-outline-success" href="#">View</a> {% endcomment %}
+              <h4 style="display: inline-block; float: right">
+                  <Strong id='price'>
+                      ${{product.price|floatformat:2}}
+                  </Strong>
+              </h4>
+          </div>
+      </div>
+  {% endfor %}
+  </div>
+  </section>
+
+  <br>
+  <H2>Soups and Salads</H2>
+  <section id="Soups and Salads">
+  <div class="row">
+  {% for product in soups %} 
+      <div class="col-lg-3">
+          <img class="thumbnail" src="{{product.imageURL}}">
+          <div class="box-element product">
+              <h6><Strong>{{product.name}}</Strong></h6>
+              <hr>
+              <button data-toggle="modal" data-target="#productModal" data-product={{product.id}} data-action="add" data-price={{product.price}} data-category="Soups" class="btn btn-outline-secondary add-btn update-side">Add to Cart</button>
+              {% comment %} <a class="btn btn-outline-success" href="#">View</a> {% endcomment %}
+              <h4 style="display: inline-block; float: right">
+                  <Strong id='price'>
+                      ${{product.price|floatformat:2}}
+                  </Strong>
+              </h4>
+          </div>
+      </div>
+  {% endfor %}
+  </div>
+  </section>
+  
+  <br>
+  <H2>Desserts</H2>
+  <section id="Desserts">
+  <div class="row">
+  {% for product in desserts %}
+      <div class="col-lg-3">
+          <img class="thumbnail" src="{{product.imageURL}}">
+          <div class="box-element product">
+              <h6><Strong>{{product.name}}</Strong></h6>
+              <hr>
+              <button data-toggle="modal" data-target="#productModal" data-product={{product.id}} data-action="add" data-price={{product.price}} data-category="Desserts" class="btn btn-outline-secondary add-btn update-side">Add to Cart</button>
+              {% comment %} <a class="btn btn-outline-success" href="#">View</a> {% endcomment %}
+              <h4 style="display: inline-block; float: right">
+                  <Strong id='price'>
+                      ${{product.price|floatformat:2}}
+                  </Strong>
+              </h4>
+          </div>
+      </div>
+  {% endfor %}
+  </div>
+  </section>
+
+  <br>
+  <H2>Sandwiches</H2>
+  <section id="Sandwiches">
+  <div class="row">
+  {% for product in sandwiches %}
+      <div class="col-lg-3">
+          <img class="thumbnail" src="{{product.imageURL}}">
+          <div class="box-element product">
+              <h6><Strong>{{product.name}}</Strong></h6>
+              <hr>
+              <button data-toggle="modal" data-target="#productModal" data-product={{product.id}} data-name={{product.name}} data-size={{product.size}} data-action="add" data-price={{product.price}} data-category="Sandwiches" class="btn btn-outline-secondary add-btn update-side">Add to Cart</button>
+              {% comment %} <a class="btn btn-outline-success" href="#">View</a> {% endcomment %}
+              <h4 style="display: inline-block; float: right">
+                  <Strong id='price'>
+                      ${{product.price|floatformat:2}}
+                  </Strong>
+              </h4>
+          </div>
+      </div>
+      {% if forloop.counter|divisibleby:4 %}
+            </div><div class="row">
+      {% endif %}
+  {% endfor %}
+  </div>
+  </section>
+  
+  <br>
+  <H2>Drinks</H2>
+  <section id="Drinks">
+  <div class="row">
+  {% for product in drinks %}
+      <div class="col-lg-3">
+          <img class="thumbnail" src="{{product.imageURL}}">
+          <div class="box-element product">
+              <h6><Strong>{{product.name}}</Strong></h6>
+              <hr>
+              <button data-toggle="modal" data-target="#productModal" data-product={{product.id}} data-name={{product.name}} data-action="add" data-price={{product.price}} data-category="Drinks" class="btn btn-outline-secondary add-btn update-side">Add to Cart</button>
+              {% comment %} <a class="btn btn-outline-success" href="#">View</a> {% endcomment %}
+              <h4 style="display: inline-block; float: right">
+                  <Strong id='price'>
+                      ${{product.price|floatformat:2}}
+                  </Strong>
+              </h4>
+          </div>
+      </div>
+  {% endfor %}
+  </div>
+  </section>
+
+  <br>
+  <H2>Sides</H2>
+  <section id="Sides">
+  <div class="row">
+  {% for product in sides %}
+      <div class="col-lg-3">
+          <img class="thumbnail" src="{{product.imageURL}}">
+          <div class="box-element product">
+              <h6><Strong>{{product.name}}</Strong></h6>
+              <hr>
+              <button data-toggle="modal" data-target="#productModal" data-product={{product.id}} data-name={{product.name}} data-action="add" data-price={{product.price}} data-category="Sides" class="btn btn-outline-secondary add-btn update-side">Add to Cart</button>
+              {% comment %} <a class="btn btn-outline-success" href="#">View</a> {% endcomment %}
+              <h4 style="display: inline-block; float: right">
+                  <Strong id='price'>
+                      ${{product.price|floatformat:2}}
+                  </Strong>
+              </h4>
+          </div>
+      </div>
+  {% endfor %}
+  </div>
+  </section>
+
+  <br>
+  <H2>Breakfast</H2>
+  <section id="Breakfast">
+  <div class="row">
+  {% for product in breakfast %}
+      <div class="col-lg-3">
+          <img class="thumbnail" src="{{product.imageURL}}">
+          <div class="box-element product">
+              <h6><Strong>{{product.name}}</Strong></h6>
+              <hr>
+              <button data-toggle="modal" data-target="#productModal" data-product={{product.id}} data-action="add" data-price={{product.price}} data-category="Breakfast" class="btn btn-outline-secondary add-btn update-side">Add to Cart</button>
+              {% comment %} <a class="btn btn-outline-success" href="#">View</a> {% endcomment %}
+              <h4 style="display: inline-block; float: right">
+                  <Strong id='price'>
+                      ${{product.price|floatformat:2}}
+                  </Strong>
+              </h4>
+          </div>
+      </div>
+  {% endfor %}
+  </div>
+  </section>
+
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- Content will be dynamically populated based on the category -->
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay" id="overlay"></div>
+
+    <style>
+        /* Styles for the pop-up form */
+        .popup {
+          display: block;
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          padding: 20px;
+          background-color: #fff;
+          border: 1px solid #ccc;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          z-index: 9999;
+          border-radius: 3px;
+          overflow-y: auto;
+          max-height: 80%;
+        }
+        .popup h2 {
+          font-size: 20px;
+          margin-bottom: 10px;
+        }
+        .popup label {
+          display: block;
+          margin-bottom: 5px;
+        }
+        .popup input[type="checkbox"] {
+          margin-right: 5px;
+        }
+        .popup input[type="number"] {
+          width: 50px;
+        }
+        .popup button {
+          padding: 10px 20px;
+          font-size: 16px;
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          cursor: pointer;
+          border-radius: 3px;
+        }
+        .popup textarea {
+          width: 100%;
+          height: 80px;
+          margin-top: 10px;
+          padding: 5px;
+          border-radius: 3px;
+        }
+      </style>
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>
+
+        // Get the modal
+        let currentProductPrice = 0;
+        $( document ).ready(function() {
+        
+            $('#productModal').on('show.bs.modal', function(event) {
+                const button = $(event.relatedTarget); // Button that triggered the modal
+                const category = button.data('category'); // Extract info from data-* attributes
+                const price = button.data('price');
+                currentProductPrice = price;
+                const modal = $(this);
+                modal.find('.modal-content').empty();
+                const name = button.data('name');
+                const size = button.data('size');
+                console.log(button)
+                switch (category) {
+                    case 'Hotdogs':
+                        // Build and append ingredient form for Hotdogs
+                        modal.find('.modal-content').append(`
+                            <div class="popup" id="popup">
+                                <h2>Choose a side for Hotdogs (required).</h2>
+                                <form>
+                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Mustard"> Add Mustard</label>
+                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Ketchup"> Add Ketchup</label>
+                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Chili"> Add Chili</label>
+                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Onions"> Add Onions</label>
+                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Slaw"> Add Slaw</label>
+                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Relish"> Add Relish</label>
+                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Spicy Mustard"> Add Spicy Mustard</label>
+                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Kraut"> Add Kraut</label>
+                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Cheese"> Add Cheese</label>
+                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Mayo"> Add Mayo</label>
+                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Red Onion Sauce"> Add Red Onion Sauce</label>
+                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Pickles"> Add Pickles</label>
+                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Jalapenos"> Add Jalapenos</label>
+                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Grilled Peppers and Onions"> Add Grilled Peppers and Onions</label>
+                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Tomatoes"> Add Tomatoes</label>
+                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Plain"> Plain</label>
+
+                                    <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
+                                    <textarea placeholder="Special Instructions" name="instructions"></textarea>
+                                    <button data-product={{product.id}} data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
+                                </form>
+                            </div>
+                        `);
+                        break;
+                    case 'Soups':
+                        // Build and append topping and dressing form for Soups
+                        modal.find('.modal-content').append(`
+                            <div class="popup" id="popup">
+                                <form>
+                                    <h3>Choose a dressing (Required - Choose 1)</h3>
+                                    <label><input type="radio" name="soups-dressing" value="Ranch Dressing"> Ranch Dressing</label>
+                                    <label><input type="radio" name="soups-dressing" value="Italian Dressing"> Italian Dressing</label>
+                                    <label><input type="radio" name="soups-dressing" value="French Dressing"> French Dressing</label>
+                                    <label><input type="radio" name="soups-dressing" value="Thousand Island"> Thousand Island Dressing</label>
+                                    <label><input type="radio" name="soups-dressing" value="Honey Mustard Dressing"> Honey Mustard Dressing</label>
+                                    
+                                    
+                                    <h3>Would you like toppings? (Required - Choose a minimum of 1)</h3>
+                                    <label><input type="checkbox" name="soups-topping" value="Add Lettuce"> Lettuce</label>
+                                    <label><input type="checkbox" name="soups-topping" value="Add Tomato"> Tomato</label>
+                                    <label><input type="checkbox" name="soups-topping" value="Add Cucumber"> Cucumber</label>
+                                    <label><input type="checkbox" name="soups-topping" value="Add Onions"> Onions</label>
+                                    <label><input type="checkbox" name="soups-topping" value="Add Olives"> Olives</label>
+                                    <label><input type="checkbox" name="soups-topping" value="Add Eggs"> Eggs</label>
+                                    <label><input type="checkbox" name="soups-topping" value="Add Green peppers"> Green Peppers</label>
+                                    <label><input type="checkbox" name="soups-topping" value="Add Banana Peppers"> Banana Peppers</label>
+                                    <label><input type="checkbox" name="soups-topping" value="Add Jalapeno Peppers"> Jalapeno Peppers</label>
+                                    <label><input type="checkbox" name="soups-topping" value="Add Salt and Pepper"> Salt and Pepper</label>
+                                    <label><input type="checkbox" name="soups-topping" value="Add Oregano"> Oregano</label>
+                                    <label><input type="checkbox" name="soups-topping" value="Add Oil-and-Vinegar"> Oil and Vinegar</label>
+                                    <label><input type="checkbox" name="soups-topping" value="Add Pickles"> Pickles</label>
+                                    <label><input type="checkbox" name="soups-topping" value="Add American Cheese"> American Cheese</label>
+                                    <label><input type="checkbox" name="soups-topping" value="Add Provolone Cheese"> Provolone Cheese</label>
+                                    <label><input type="checkbox" name="soups-topping" value="Add Swiss Cheese"> Swiss Cheese</label>
+                                    
+
+                                    <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
+                                    <textarea placeholder="Special Instructions" name="instructions"></textarea>
+                                    <button data-product={{product.id}} data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
+                                </form>
+                            </div>
+                        `);
+                        break;
+                    // Add cases for other categories if needed
+                    case 'Desserts':
+                    modal.find('.modal-content').append(`
+                        <div class="popup" id="popup">
+                            <form>
+                                <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
+                                <textarea placeholder="Special Instructions" name="instructions"></textarea>
+                                <button data-product={{product.id}} data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
+                            </form>
+                        </div>
+                    `);
+                        break;
+                    // Sandwiches
+                    case 'Sandwiches':
+                    // If the product's name is have Grilled Cheese, add a choice of cheese (Choose a cheese Required - Choose 1. American Cheese Provolone Cheese Swiss Cheese Pepper Jack)
+                    
+                    if (name.includes('Grilled')) {
+                        modal.find('.modal-content').append(`
+                            <div class="popup" id="popup">
+                                <form>
+                                    <h3>Choose a bread (Required - Choose 1)</h3>
+                                    <label><input type="radio" name="sandwiches-grilled-bread" value="White Bread"> White Bread</label>
+                                    <label><input type="radio" name="sandwiches-grilled-bread" value="Wheat Bread"> Wheat Bread</label>
+                                    <label><input type="radio" name="sandwiches-grilled-bread" value="Rye Bread"> Rye Bread</label>
+
+                                    <h3>Choose a cheese (Required - Choose 1)</h3>
+                                    <label><input type="radio" name="sandwiches-grilled-cheese" value="American Cheese"> American Cheese</label>
+                                    <label><input type="radio" name="sandwiches-grilled-cheese" value="Provolone Cheese"> Provolone Cheese</label>
+                                    <label><input type="radio" name="sandwiches-grilled-cheese" value="Swiss Cheese"> Swiss Cheese</label>
+                                    <label><input type="radio" name="sandwiches-grilled-cheese" value="Pepper Jack"> Pepper Jack</label>
+
+                                    <h3>Would you like toppings? (Optional - Choose as many as you like)</h3>
+                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Lettuce"> Add Lettuce</label>
+                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Tomato"> Add Tomato</label>
+                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Mayo"> Add Mayo</label>
+                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Mustard"> Add Mustard</label>
+                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Onions"> Add Onions</label>
+                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Pickles"> Add Pickles</label>
+                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Olives"> Add Olives</label>
+                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add American Cheese"> Add American Cheese</label>
+                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Provolone Cheese"> Add Provolone Cheese</label>
+                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Swiss Cheese"> Add Swiss Cheese</label>
+                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Green Peppers"> Add Green Peppers</label>
+                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Banana Peppers"> Add Banana Peppers</label>
+                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Jalapeno Peppers"> Add Jalapeno Peppers</label>
+                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Cucumbers"> Add Cucumbers</label>
+                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Oil"> Add Oil</label>
+                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Vinegar"> Add Vinegar</label>
+                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Salt"> Add Salt</label>
+                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Pepper"> Add Pepper</label>
+                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Oregano"> Add Oregano</label>
+
+
+                                    <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
+                                    <textarea placeholder="Special Instructions" name="instructions"></textarea>
+                                    <button data-product={{product.id}} data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
+                                </form>
+                            </div>
+                        `);
+                    } else if (size.includes('combo')) {
+                        modal.find('.modal-content').append(`
+                        <div class="popup" id="popup">
+                            <form>
+                                <h3>Choose a bread (Required - Choose 1)</h3>
+                                <label><input type="radio" name="combo-bread" value="White Bread"> White Bread</label>
+                                <label><input type="radio" name="combo-bread" value="Wheat Bread"> Wheat Bread</label>
+                                <label><input type="radio" name="combo-bread" value="Rye Bread"> Rye Bread</label>
+
+                                <h3>Would you like toppings? (Optional - Choose as many as you like)</h3>
+                                <label><input type="checkbox" name="combo-topping" value="Add Lettuce"> Add Lettuce</label>
+                                <label><input type="checkbox" name="combo-topping" value="Add Tomato"> Add Tomato</label>
+                                <label><input type="checkbox" name="combo-topping" value="Add Mayo"> Add Mayo</label>
+                                <label><input type="checkbox" name="combo-topping" value="Add Mustard"> Add Mustard</label>
+                                <label><input type="checkbox" name="combo-topping" value="Add Onions"> Add Onions</label>
+                                <label><input type="checkbox" name="combo-topping" value="Add Pickles"> Add Pickles</label>
+                                <label><input type="checkbox" name="combo-topping" value="Add Olives"> Add Olives</label>
+                                <label><input type="checkbox" name="combo-topping" value="Add American Cheese"> Add American Cheese</label>
+                                <label><input type="checkbox" name="combo-topping" value="Add Provolone Cheese"> Add Provolone Cheese</label>
+                                <label><input type="checkbox" name="combo-topping" value="Add Swiss Cheese"> Add Swiss Cheese</label>
+                                <label><input type="checkbox" name="combo-topping" value="Add Green Peppers"> Add Green Peppers</label>
+                                <label><input type="checkbox" name="combo-topping" value="Add Banana Peppers"> Add Banana Peppers</label>
+                                <label><input type="checkbox" name="combo-topping" value="Add Jalapeno Peppers"> Add Jalapeno Peppers</label>
+                                <label><input type="checkbox" name="combo-topping" value="Add Cucumbers"> Add Cucumbers</label>
+                                <label><input type="checkbox" name="combo-topping" value="Add Oil"> Add Oil</label>
+                                <label><input type="checkbox" name="combo-topping" value="Add Vinegar"> Add Vinegar</label>
+                                <label><input type="checkbox" name="combo-topping" value="Add Salt"> Add Salt</label>
+                                <label><input type="checkbox" name="combo-topping" value="Add Pepper"> Add Pepper</label>
+                                <label><input type="checkbox" name="combo-topping" value="Add Oregano"> Add Oregano</label>
+
+  
+                                <h3>Choose a side (Required - Choose 1)</h3>
+                                <label><input type="radio" name="combo-side" value="Lays Plain"> Lays Plain</label>
+                                <label><input type="radio" name="combo-side" value="Slaw" data-price="0.40"> Slaw + $0.40</label>
+                                <label><input type="radio" name="combo-side" value="Potato Salad" data-price="0.40"> Potato Salad + $0.40</label>
+                                <label><input type="radio" name="combo-side" value="Macaroni Salad" data-price="0.40"> Macaroni Salad + $0.40</label>
+                                <label><input type="radio" name="combo-side" value="Deviled Eggs" data-price="0.40"> Deviled Eggs + $0.40</label>
+                                <label><input type="radio" name="combo-side" value="Deep River Chips Jalapeno"> Deep River Chips Jalapeno</label>
+                                <label><input type="radio" name="combo-side" value="Lays BBQ"> Lays BBQ</label>
+                                <label><input type="radio" name="combo-side" value="Deep River Chips Salt and Vinegar"> Deep River Chips Salt and Vinegar</label>
+                                <label><input type="radio" name="combo-side" value="Deep River Chips BBQ"> Deep River Chips BBQ</label>
+                                <label><input type="radio" name="combo-side" value="Deep River Chips Sour Cream and Onion"> Deep River Chips Sour Cream and Onion</label>
+                                <label><input type="radio" name="combo-side" value="Fritos"> Fritos</label>
+                                <label><input type="radio" name="combo-side" value="Fries" data-price="0.40"> Fries + $0.40</label>
+
+
+                                <h3>Choose a soda (Required - Choose 1)</h3>
+                                <label><input type="radio" name="combo-soda" value="Pepsi"> Pepsi</label>
+                                <label><input type="radio" name="combo-soda" value="Diet Pepsi"> Diet Pepsi</label>
+                                <label><input type="radio" name="combo-soda" value="Mountain Dew"> Mountain Dew</label>
+                                <label><input type="radio" name="combo-soda" value="Dr Pepper"> Dr Pepper</label>
+                                <label><input type="radio" name="combo-soda" value="Diet Dr Pepper"> Diet Dr Pepper</label>
+                                <label><input type="radio" name="combo-soda" value="Root Beer"> Root Beer</label>
+                                <label><input type="radio" name="combo-soda" value="Sierra Mist"> Sierra Mist</label>
+                                <label><input type="radio" name="combo-soda" value="Orange Gatorade"> Orange Gatorade</label>
+                                <label><input type="radio" name="combo-soda" value="Sweet Tea"> Sweet Tea</label>
+                                <label><input type="radio" name="combo-soda" value="Unsweet Tea"> UNSWEET TEA</label>
+                                <label><input type="radio" name="combo-soda" value="Home Made Lemonade"> Home Made Lemonade</label>
+                                <label><input type="radio" name="combo-soda" value="Bottled Water"> Bottled Water</label>
+
+
+                                <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
+                                <textarea placeholder="Special Instructions" name="instructions"></textarea>
+                                <button data-product="{{ product.id }}" data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
+                            </form>
+
+                        </div>
+                    `);
+                    }
+                     else {
+
+                        modal.find('.modal-content').append(`
+                            <div class="popup" id="popup">
+                                <form>
+                                    <h3>Choose a bread (Required - Choose 1)</h3>
+                                    <label><input type="radio" name="sandwiches-bread" value="White Bread"> White Bread</label>
+                                    <label><input type="radio" name="sandwiches-bread" value="Wheat Bread"> Wheat Bread</label>
+                                    <label><input type="radio" name="sandwiches-bread" value="Rye Bread"> Rye Bread</label>
+
+                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Lettuce"> Add Lettuce</label>
+                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Tomato"> Add Tomato</label>
+                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Mayo"> Add Mayo</label>
+                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Mustard"> Add Mustard</label>
+                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Onions"> Add Onions</label>
+                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Pickles"> Add Pickles</label>
+                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Olives"> Add Olives</label>
+                                    <label><input type="checkbox" name="sandwiches-topping" value="Add American Cheese"> Add American Cheese</label>
+                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Provolone Cheese"> Add Provolone Cheese</label>
+                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Swiss Cheese"> Add Swiss Cheese</label>
+                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Green Peppers"> Add Green Peppers</label>
+                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Banana Peppers"> Add Banana Peppers</label>
+                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Jalapeno Peppers"> Add Jalapeno Peppers</label>
+                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Cucumbers"> Add Cucumbers</label>
+                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Oil"> Add Oil</label>
+                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Vinegar"> Add Vinegar</label>
+                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Salt"> Add Salt</label>
+                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Pepper"> Add Pepper</label>
+                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Oregano"> Add Oregano</label>
+
+
+                                    <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
+                                    <textarea placeholder="Special Instructions" name="instructions"></textarea>
+                                    <button data-product="{{ product.id }}" data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
+                                </form>
+
+                            </div>
+                        `);
+                    }
+                        break;
+                    case 'Drinks':
+                    // If the drink is fountain drink, add a choice of soda 
+                    console.log(name);
+                    if ( name.includes('Fountain')) {
+                        modal.find('.modal-content').append(`
+                            <div class="popup" id="popup">
+                                <form>
+                                    <h3>Choose a soda (Required - Choose 1)</h3>
+                                    <label><input type="radio" name="soda" value="Pepsi"> Pepsi</label>
+                                    <label><input type="radio" name="soda" value="Diet Pepsi"> Diet Pepsi</label>
+                                    <label><input type="radio" name="soda" value="Mountain Dew"> Mountain Dew</label>
+                                    <label><input type="radio" name="soda" value="Dr Pepper"> Dr Pepper</label>
+                                    <label><input type="radio" name="soda" value="Diet Dr Pepper"> Diet Dr Pepper</label>
+                                    <label><input type="radio" name="soda" value="Root Beer"> Root Beer</label>
+                                    <label><input type="radio" name="soda" value="Sierra Mist"> Sierra Mist</label>
+                                    <label><input type="radio" name="soda" value="Orange Gatorade"> Orange Gatorade</label>
+                                    <label><input type="radio" name="soda" value="Sweet Tea"> Sweet Tea</label>
+                                    <label><input type="radio" name="soda" value="Unsweet Tea"> UNSWEET TEA</label>
+                                    <label><input type="radio" name="soda" value="Home Made Lemonade"> Home Made Lemonade</label>
+                                    <label><input type="radio" name="soda" value="Bottled Water"> Bottled Water</label>
+
+                                    <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
+                                    <textarea placeholder="Special Instructions" name="instructions"></textarea>
+                                    <button data-product={{product.id}} data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
+                                </form>
+                            </div>
+                        `);
+                    } else {
+                        modal.find('.modal-content').append(`
+                            <div class="popup" id="popup">
+                                <form>
+                                    <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
+                                    <textarea placeholder="Special Instructions" name="instructions"></textarea>
+                                    <button data-product={{product.id}} data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
+                                </form>
+                            </div>
+                        `);
+                    }
+                        break;
+                    case 'Sides':
+                    // If the side is chips Choose a flavor
+                    console.log(name);
+                    if ( name.includes('Chips') ) {
+                        modal.find('.modal-content').append(`
+                            <div class="popup" id="popup">
+                                <form>
+                                    <h3>Choose a flavor (Required - Choose 1)</h3>
+                                    <label><input type="radio" name="flavor" value="Lays Plain"> Lays Plain</label>
+                                    <label><input type="radio" name="flavor" value="Lays BBQ"> Lays BBQ</label>
+                                    <label><input type="radio" name="flavor" value="Jalapeno Kettle Chips"> Jalapeno Kettle Chips</label>
+                                    <label><input type="radio" name="flavor" value="Sour Cream N Onion Kettle Chips"> Sour Cream N Onion Kettle Chips</label>
+                                    <label><input type="radio" name="flavor" value="Salt N Vinegar Kettle Chips"> Salt N Vinegar Kettle Chips</label>
+                                    <label><input type="radio" name="flavor" value="Plain Fritos"> Plain Fritos</label>
+
+
+                                    <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
+                                    <textarea placeholder="Special Instructions" name="instructions"></textarea>
+                                    <button data-product={{product.id}} data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
+                                </form>
+                            </div>
+                        `);
+                    } else {
+                        modal.find('.modal-content').append(`
+                            <div class="popup" id="popup">
+                                <form>
+                                    <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
+                                    <textarea placeholder="Special Instructions" name="instructions"></textarea>
+                                    <button data-product={{product.id}} data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
+                                </form>
+                            </div>
+                        `);
+                    } 
+                        break;
+                    case 'Breakfast':
+                        // Meat, Egg and Cheese sandwich
+                    modal.find('.modal-content').append(`
+                        <div class="popup" id="popup">
+                            <form>
+                                <h3>Choose a meat (Required - Choose 1)</h3>
+                                <label><input type="radio" name="meat" value="pork-roll"> Pork Roll</label>
+                                <label><input type="radio" name="meat" value="bacon"> Bacon</label>
+                                <label><input type="radio" name="meat" value="sausage"> Sausage</label>
+                                <label><input type="radio" name="meat" value="ham"> Ham</label>
+                                <label><input type="radio" name="meat" value="turkey-sausage"> Turkey Sausage</label>
+
+                                <h3>Choose a cheese (Required - Choose 1)</h3>
+                                <label><input type="radio" name="cheese" value="american"> American</label>
+                                <label><input type="radio" name="cheese" value="swiss"> Swiss</label>
+                                <label><input type="radio" name="cheese" value="provolone"> Provolone</label>
+                                <label><input type="radio" name="cheese" value="pepper-jack"> Pepper Jack</label>
+
+                                <h3>Choose a bread (Required - Choose 1)</h3>
+                                <label><input type="radio" name="bread" value="kaiser-roll"> Kaiser Roll</label>
+                                <label><input type="radio" name="bread" value="croissant"> Croissant</label>
+                                <label><input type="radio" name="bread" value="white-bread"> White Bread</label>
+                                <label><input type="radio" name="bread" value="wheat-bread"> Wheat Bread</label>
+                                <label><input type="radio" name="bread" value="rye-bread"> Rye Bread</label>
+
+                                <h3>Would you like toppings? (Optional - Choose as many as you like)</h3>
+                                <label><input type="checkbox" name="topping" value="salt"> Salt</label>
+                                <label><input type="checkbox" name="topping" value="pepper"> Pepper</label>
+                                <label><input type="checkbox" name="topping" value="ketchup"> Ketchup</label>
+                                <label><input type="checkbox" name="topping" value="mayo"> Mayo</label>
+                                <label><input type="checkbox" name="topping" value="extra-egg"> Extra Egg</label>
+                                <label><input type="checkbox" name="topping" value="hash-brown-patty"> Hash Brown Patty on the Sandwich</label>
+                                <label><input type="checkbox" name="topping" value="extra-meat"> Extra Meat</label>
+                                <label><input type="checkbox" name="topping" value="shredded-hash-browns"> Shredded Hash Browns Side</label>
+                                <label><input type="checkbox" name="topping" value="fried-egg"> Fried Egg</label>
+                                <label><input type="checkbox" name="topping" value="scrambled-egg"> Scrambled Egg</label>
+
+                                <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
+                                <textarea placeholder="Special Instructions" name="instructions"></textarea>
+                                <button data-product={{product.id}} data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
+                            </form>
+                        </div>
+                    `);
+                        
+                        break;
+
+                    default:
+                        break;
+                }
+
+                // The default price is the product price and button is disabled until at least one ingredient is checked
+                modal.find('.modal-content form button').html(`Add Ingredients - $${price}`);
+                modal.find('.modal-content form button').prop('disabled', true);
+                modal.find('.modal-content form button').css('background-color', '#ccc');
+
+                
+
+                if (category == 'Desserts') {
+                    modal.find('.modal-content form button').prop('disabled', false);
+                    // If the submit button is enabled, change the color to blue
+                    modal.find('.modal-content form button').css('background-color', '#007bff');
+                }
+                if (category == 'Drinks' && !name.includes('Fountain')) {
+                    modal.find('.modal-content form button').prop('disabled', false);
+                    // If the submit button is enabled, change the color to blue
+                    modal.find('.modal-content form button').css('background-color', '#007bff');
+                }
+                if (category == 'Sides' && !name.includes('Chips')) {
+                    modal.find('.modal-content form button').prop('disabled', false);
+                    // If the submit button is enabled, change the color to blue
+                    modal.find('.modal-content form button').css('background-color', '#007bff');
+                }
+
+                // Add event listener to the form
+                modal.find('.modal-content form').on('change', function() {
+                    // Enable the submit button if at least one ingredient is checked
+                    if (modal.find('.modal-content form input[name="hotdogs-ingredient"]:checked').length > 0) {
+                        modal.find('.modal-content form button').prop('disabled', false);
+                        // If the submit button is enabled, change the color to blue
+                    } else if(modal.find('.modal-content form input[name="soups-dressing"]:checked').length > 0 && modal.find('.modal-content form input[name="soups-topping"]:checked').length > 0) {
+                        modal.find('.modal-content form button').prop('disabled', false);
+                    } else if (modal.find('.modal-content form input[name="sandwiches-grilled-bread"]:checked').length > 0 && modal.find('.modal-content form input[name="sandwiches-grilled-cheese"]:checked').length > 0 && modal.find('.modal-content form input[name="sandwiches-grilled-topping"]:checked').length > 0) {
+                        // For Grilled Cheese sandwiches, the user must choose a cheese also
+                        modal.find('.modal-content form button').prop('disabled', false);
+
+                    } else if (modal.find('.modal-content form input[name="sandwiches-bread"]:checked').length > 0 && modal.find('.modal-content form input[name="sandwiches-topping"]:checked').length > 0) {
+                        // For general sandwiches, the user must choose a bread, and at least one topping
+                        modal.find('.modal-content form button').prop('disabled', false);
+
+                    } else if (modal.find('.modal-content form input[name="soda"]:checked').length > 0) {
+                        modal.find('.modal-content form button').prop('disabled', false);
+                    } else if (modal.find('.modal-content form input[name="flavor"]:checked').length > 0) {
+                        modal.find('.modal-content form button').prop('disabled', false);
+                    } else if (modal.find('.modal-content form input[name="combo-bread"]:checked').length > 0 && modal.find('.modal-content form input[name="combo-topping"]:checked').length > 0 && modal.find('.modal-content form input[name="combo-side"]:checked').length > 0 && modal.find('.modal-content form input[name="combo-soda"]:checked').length > 0) {
+                        modal.find('.modal-content form button').prop('disabled', false);
+                    } else if (modal.find('.modal-content form input[name="meat"]:checked').length > 0 && modal.find('.modal-content form input[name="cheese"]:checked').length > 0 && modal.find('.modal-content form input[name="bread"]:checked').length > 0 && modal.find('.modal-content form input[name="topping"]:checked').length > 0) {
+                        modal.find('.modal-content form button').prop('disabled', false);
+                    }
+                    
+                    else {
+                        modal.find('.modal-content form button').prop('disabled', true);
+                    }
+
+                    // If the user choose dessert, do not disabled the submit button
+                    console.log(category);
+                    if (category == 'Desserts') {
+                        modal.find('.modal-content form button').prop('disabled', false);
+                    }
+                    if (category == 'Drinks' && !name.includes('Fountain')) {
+                        modal.find('.modal-content form button').prop('disabled', false);
+                    }
+                    // If the submit button is enabled, change the color to blue
+                    if (modal.find('.modal-content form button').prop('disabled') == false) {
+                        modal.find('.modal-content form button').css('background-color', '#007bff');
+                    } else {
+                        modal.find('.modal-content form button').css('background-color', '#ccc');
+                    }
+
+                    if (category == 'Sides' && !name.includes('Chips')) {
+                        modal.find('.modal-content form button').prop('disabled', false);
+                        // If the submit button is enabled, change the color to blue
+                        modal.find('.modal-content form button').css('background-color', '#007bff');
+                    }
+                    const sideRadioInputs = modal.find('input[name="combo-side"]');
+                    const selectedSide = sideRadioInputs.filter(':checked');
+                    // If the user clicks quantity input field, calculate the price based on the quantity
+                    const quantity = modal.find('.modal-content form input[name="quantity"]').val();
+                    console.log(selectedSide.data('price'));
+                    const price = parseFloat(button.data('price')) + (parseFloat(selectedSide.data('price')) || 0);
+                    currentProductPrice = price;
+                    console.log(price);
+                    const total = quantity * price;
+                    modal.find('.modal-content form button').html(`Add Ingredients - $${total.toFixed(2)}`);
+                    
+                });
+
+                // If the user clicks the add ingredients button, add the ingredients to the cart
+                modal.find('.modal-content form button').on('click', function() {
+
+
+                    // Conbine all the selected checkbox and radio into a string
+                    const selectedRadio = Array.from(document.querySelectorAll('input[type="radio"]:checked'))
+                    const selectedCheckbox = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'));
+                    const selectedIngredients = selectedRadio.concat(selectedCheckbox).map(i => i.value).join(', ');
+                    console.log(selectedIngredients);
+                    
+
+                    
+                
+                    // Get the instructions from the textarea and combine them with the selected ingredients. Start with a new line and add the word "Special instructions: " before the instructions
+                    let instructions = ""
+                    console.log(typeof modal.find('.modal-content form textarea').val());
+                    if (modal.find('.modal-content form textarea').val() == '') {
+                        modal.find('.modal-content form textarea').val('No special instructions');
+                    } else{
+                        instructions = '\nSpecial instructions: ' + modal.find('.modal-content form textarea').val();
+                    }
+                    
+                    console.log(instructions);
+                    let ingredients = `${selectedIngredients} ${instructions}`;
+                    ingredients = ingredients.trim();
+
+                    console.log("{" + ingredients + "}");
+                    
+                    // Get the quantity from the quantity input field
+                    const quantityInput = document.querySelector('input[name="quantity"]');
+
+                    const quantity = quantityInput.value;
+                    console.log(quantity);
+                    console.log(this.dataset)
+                    console.log(this.dataset.product)
+                    const productId = button.data('product');
+                    action = "add"
+                    for (let i = 0; i < quantity; i++) {
+                        console.log('productId:', productId, 'action:', action)
+                        console.log('USER:', user)
+                        if (user == 'AnonymousUser'){
+                            addCookieItem(productId, action, ingredients)
+                        }else{
+                            updateUserOrder(productId, action, ingredients)
+                        }
+                
+                    }
+                
+                    // popup.style.display = 'none';
+                    // overlay.style.display = 'none';
+                });
+            });
+
+            // If the user type in the quantity input field, calculate the price based on the quantity and update the price
+            $('#productModal').on('keyup', function(event) {
+                const button = $(event.relatedTarget); // Button that triggered the modal
+                const category = button.data('category'); // Extract info from data-* attributes
+                const price = currentProductPrice
+                console.log(price);
+                const modal = $(this);
+                const quantity = modal.find('.modal-content form input[name="quantity"]').val();
+                const total = quantity * price;
+                modal.find('.modal-content form button').html(`Add Ingredients - $${total.toFixed(2)}`);
+            });
+
+
+        });
+
+
+
+
+      </script>
+      {% endblock content %}
