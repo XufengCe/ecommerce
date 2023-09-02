@@ -196,6 +196,7 @@ from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 @transaction.atomic
 def processOrder(request):
+    # The transaction_id is used to identify the order and the payment
     transaction_id = datetime.datetime.now()
     print(transaction_id, 'transaction_id')
     data = json.loads(request.body)
