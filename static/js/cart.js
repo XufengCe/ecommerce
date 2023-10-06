@@ -35,6 +35,12 @@ function addCookieItem(productId, action, description){
         }else{
             cart[productId]['quantity'] += 1
         }
+        if(description != undefined){
+            
+            cart[productId]['description'] = description
+            
+            console.log(description)
+        }
     }
     if (action == 'remove'){
         cart[productId]['quantity'] -= 1
@@ -44,13 +50,7 @@ function addCookieItem(productId, action, description){
             delete cart[productId]
         }
     }
-    str = description
-    if(description != undefined){
-        
-        cart[productId]['description'] = str
-        
-        console.log(description)
-    }
+
 
 
     console.log('Cart:', cart)

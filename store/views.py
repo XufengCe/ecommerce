@@ -12,6 +12,7 @@ from django.db import transaction
 import time
 
 
+
 # Get the current working directory
 current_directory = os.path.dirname(os.path.abspath(__file__))
 
@@ -20,10 +21,7 @@ relative_path_to_env = os.path.join(current_directory, '.env')
 
 # Load environment variables from .env file with relative path
 load_dotenv(dotenv_path=relative_path_to_env)
-# Create your views here.
-def addIngredient(request):
 
-    return render(request, 'store/ingredient.html')
 def store(request):
 
     data = cartData(request)
@@ -117,7 +115,9 @@ def send_otp(request):
     #     return JsonResponse('Otp sent', safe=False)
     # else:
     #     return JsonResponse('Otp not sent', safe=False)
+
     return JsonResponse('Otp sent', safe=False)
+
 def verify_otp(request):
     data = json.loads(request.body)
     print(request, 'request')
@@ -135,7 +135,6 @@ def verify_otp(request):
     verify_sid = os.getenv('VERIFY_SERVICE_SID')
 
     client = Client(account_sid, auth_token)
-
     # verification_check = client.verify \
     #                         .v2 \
     #                         .services(verify_sid) \
@@ -149,14 +148,13 @@ def verify_otp(request):
     # else:
     #     return JsonResponse('Otp not verified', safe=False)
 
-    # Remove the phone information from request
-    del data['paymentData']['phone_number']
-    del data['paymentData']['otp_number']
 
+    time.sleep(5)
+    if processOrder(request).status_code == 200:
+        return JsonResponse('Otp verified', safe=False)
+    else:
+        return JsonResponse('Otp not verified', safe=False)
 
-
-    processOrder(request)
-    return JsonResponse('Otp verified', safe=False)
 
 # This function works atomically
 # It is used to get the cart data from the database
@@ -164,18 +162,18 @@ def verify_otp(request):
 @transaction.atomic
 def updateItem(request):
     data = json.loads(request.body)
-    print("views.py - updateItem", data)
-    print(data['productId'])
+    # print("views.py - updateItem", data)
+    # print(data['productId'])
     productId = data['productId']
     action = data['action']
-    print('Action:', action)
-    print('Product Id:', productId)
+    # print('Action:', action)
+    # print('Product Id:', productId)
 
     customer = request.user.customer
     product = Product.objects.get(id=productId)
     order, created = Order.objects.get_or_create(customer=customer, complete=False)
-    print(order, 'order')
-    print(created, 'created')
+    # print(order, 'order')
+    # print(created, 'created')
 
     orderItem, created = OrderItem.objects.get_or_create(order=order, product=product, description=data['description'])
 
@@ -183,9 +181,10 @@ def updateItem(request):
         orderItem.quantity = (orderItem.quantity + 1)
     elif action == 'remove':
         orderItem.quantity = (orderItem.quantity - 1)
-    orderItem.save()
     print(orderItem.quantity, 'orderItem.quantity')
-    print(orderItem, 'orderItem')
+    orderItem.save()
+    # print(orderItem.quantity, 'orderItem.quantity')
+    # print(orderItem, 'orderItem')
 
     if orderItem.quantity <= 0:
         orderItem.delete()
@@ -220,8 +219,12 @@ def processOrder(request):
     total = float(data['form']['total'])
     order.transaction_id = transaction_id
     order.paid = data['paid']
+    print(total, 'total')
+    print(order.get_cart_total, 'order.get_cart_total')
     if total == float(order.get_cart_total):
         order.complete = True
+    else:
+        return JsonResponse('Payment not complete!', safe=False)
     order.save()
 
     if order.shipping == True:
@@ -233,7 +236,6 @@ def processOrder(request):
             state=data['shipping']['state'], 
             zipcode=data['shipping']['zipcode']
         )
-    # Wait for 10 seconds
-    time.sleep(10)
+    
     return JsonResponse('Payment complete!', safe=False)
 

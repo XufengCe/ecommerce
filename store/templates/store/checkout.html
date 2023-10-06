@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-lg-6">
-            <div class="box-element" id="form-wrapper">
+            <div class="box-element hidden" id="form-wrapper">
                 <form id="form">
                     <div id="user-info">
                         <div class="form-field">
@@ -45,7 +45,9 @@
             <div class="box-element" id="payment-info">
                 <!-- Set up a container element for the button -->
                 <h3>Payment Information</h3>
-                <div id="paypal-button-container"></div>
+                {% comment %} Show Online payment will come soon with red color {% endcomment %}
+                <h2 style="color: red;">Online payment will come soon</h2>
+                {% comment %} <div id="paypal-button-container"></div> {% endcomment %}
                 {% comment %} <button id="make-payment">Make Payment</button> {% endcomment %}
             </div>
             <br>
@@ -67,6 +69,13 @@
                 
                 <button class="btn btn-success btn-block" type="submit" id="otp-button" style="margin-top: 20px;">Submit</button>
             </form>
+            <div id="loading-spinner" class="d-none text-center">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only"></span>
+                </div>
+                <p id="loading-message">Loading...</p>
+            </div>
+            
         </div>
 
         <div class="col-lg-6">
@@ -134,12 +143,12 @@
     </script>
     <script type="text/javascript">
         var shipping = '{{order.shipping}}'
-        
-
-        console.log(shipping)
+        let name = null
+        let phoneNumber = null
+        document.getElementById('form-wrapper').classList.add('hidden')
+        console.log(shipping)   
         if (shipping == 'False'){
-            // Hide entire shipping information form if user is logged in and shipping is false
-            document.getElementById("shipping-info").innerHTML = ''
+            document.getElementById('shipping-info').classList.add('hidden')
         }
         if (user != 'AnonymousUser'){
             // Hide entire user information form if user is logged in
@@ -179,16 +188,21 @@
 
         document.getElementById("phoneForm").addEventListener("submit", function(event) {
             event.preventDefault();
-            const phoneNumberInput = document.getElementById("phoneNumber");
-            const phoneNumber = phoneNumberInput.value;
+            const loadingSpinner = document.getElementById('loading-spinner');
+            name = document.getElementById("phoneForm").elements[0].value;
+            phoneNumber = document.getElementById("phoneNumber").value;
             const phoneNumberRegex = /^\d{3}\d{3}\d{4}$/;
-
+            let otp_number = null;
             if (phoneNumberRegex.test(phoneNumber)) {
               // Do your submit action here
               var url = '/send_otp/'
                 var data = {
                     'phone_number': phoneNumber,
                 }
+                // Show 
+                loadingSpinner.classList.remove('d-none');
+                const loadingMessage = document.getElementById('loading-message');
+                loadingMessage.textContent = "Sending verification code.."
                 fetch(url, {
                     method:'POST',
                     headers:{
@@ -197,12 +211,17 @@
                     },
                     body:JSON.stringify(data)
                 }).then((response) => {
+                    loadingSpinner.classList.add('d-none');
                     return response.json()
                 }).then((data) => {
                     console.log('Data:', data)
                     
                     document.getElementById('otp-input').classList.remove('hidden')
                     document.getElementById('phoneForm').classList.add('hidden')
+                }).catch((error) => {
+                    alert('OTP verification failed, please try again')
+
+
                 })
             } else {
               alert("Invalid phone number format. Please use the format: 444-555-6666.");
@@ -211,12 +230,15 @@
 
         document.getElementById("otp-button").addEventListener('click', function(event) {
             event.preventDefault();
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const loadingMessage = document.getElementById('loading-message');
+
             console.log('OTP form submitted..')
             var url = '/verify_otp/'
             otpRegex = /^\d{6}$/;
             if (otpRegex.test(document.getElementById('otpNumber').value)){
                 var userFormData = {
-                    'name':document.getElementById('form').name.value,
+                    'name':name,
                     'email':null,
                     'total':'{{order.get_cart_total}}',
                 }
@@ -229,9 +251,11 @@
                     'country':null,
                 }
                 var data = {
-                    'phone_number': document.getElementById('phoneNumber').value,
+                    'phone_number': phoneNumber,
                     'otp_number': document.getElementById('otpNumber').value,
                 }
+                loadingSpinner.classList.remove('d-none');
+                loadingMessage.textContent = "Verifying code and submitting order.."
                 fetch(url, {
                     method:'POST',
                     headers:{
@@ -240,13 +264,14 @@
                     },
                     body:JSON.stringify({'form':userFormData, 'shipping':shippingInfo, 'paymentData':data, 'paid':false})
                 }).then((response) => {
-                    
+                    loadingSpinner.classList.add('d-none');
                     return response.json()
                 }).then((data) => {
                     console.log('Data:', data)
                     
                     cart = {}
                     if (data == 'Otp verified'){
+                        loadingSpinner.classList.add('d-none');
                         alert('Order Placed')
                         cart = {}
                         document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
@@ -256,6 +281,10 @@
                         window.location.href = "{% url 'checkout' %}"
                     }
                     
+                }).catch((error) => {
+                    console.log('Error:', error)
+                    alert('OTP verification failed, please try again')
+
                 })
             } else {
                 alert('Invalid OTP format, please try again')

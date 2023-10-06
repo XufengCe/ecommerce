@@ -1,15 +1,12 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block navigation %}
-
+<ul class="navbar-nav mr-auto">
     <li class="nav-item">
       <a class="nav-link active" href="{% url 'store' %}">Home <span class="sr-only">(current)</span></a>
     </li>
     <br>
     <br>
-    <li class="nav-item">
-      <a class="nav-link" data-scroll="true" href="#Best Sell">Best Sell</a>
-    </li>
     <li class="nav-item">
       <a class="nav-link" data-scroll="true" href="#Hotdogs">HotDogs</a>
     </li>
@@ -31,20 +28,24 @@
     <li class="nav-itemW">
       <a class="nav-link" data-scroll="true" href="#Breakfast">Breakfast</a>
     </li>
+</ul>
 
 {% endblock %}
 {% block content %}
-
-  <H2>Hot Dogs</H2>
   <section id="Hotdogs">
+  <H2>Hot Dogs</H2>
+  
   <div class="row">
   {% for product in hotdogs %} 
       <div class="col-lg-3">
           <img class="thumbnail" src="{{product.imageURL}}">
           <div class="box-element product">
-              <h6><Strong>{{product.name}}</Strong></h6>
-              <hr>
-              <button data-toggle="modal" data-target="#productModal" data-product={{product.id}} data-action="add" data-price={{product.price}} data-category="Hotdogs" class="btn btn-outline-secondary add-btn update-side">Add to Cart</button>
+            <h6><Strong>{{product.name}}</Strong></h6>
+            <div class="description">
+                {{product.description}}
+            </div>
+            <hr class="hr">
+              <button data-toggle="modal" data-target="#productModal" data-product={{product.id}} data-combo={{product.combo}} data-action="add" data-price={{product.price}} data-category="Hotdogs" class="btn btn-outline-secondary add-btn update-side">Add to Cart</button>
               {% comment %} <a class="btn btn-outline-success" href="#">View</a> {% endcomment %}
               <h4 style="display: inline-block; float: right">
                   <Strong id='price'>
@@ -58,16 +59,20 @@
   </section>
 
   <br>
-  <H2>Soups and Salads</H2>
   <section id="Soups and Salads">
+  <H2>Soups and Salads</H2>
+
   <div class="row">
   {% for product in soups %} 
       <div class="col-lg-3">
           <img class="thumbnail" src="{{product.imageURL}}">
           <div class="box-element product">
-              <h6><Strong>{{product.name}}</Strong></h6>
-              <hr>
-              <button data-toggle="modal" data-target="#productModal" data-product={{product.id}} data-action="add" data-price={{product.price}} data-category="Soups" class="btn btn-outline-secondary add-btn update-side">Add to Cart</button>
+            <h6><Strong>{{product.name}}</Strong></h6>
+            <div class="description">
+                {{product.description}}
+            </div>
+            <hr>
+              <button data-toggle="modal" data-target="#productModal" data-product={{product.id}} data-combo={{product.combo}} data-action="add" data-price={{product.price}} data-category="Soups" class="btn btn-outline-secondary add-btn update-side">Add to Cart</button>
               {% comment %} <a class="btn btn-outline-success" href="#">View</a> {% endcomment %}
               <h4 style="display: inline-block; float: right">
                   <Strong id='price'>
@@ -81,15 +86,18 @@
   </section>
   
   <br>
-  <H2>Desserts</H2>
   <section id="Desserts">
+  <H2>Desserts</H2>
   <div class="row">
   {% for product in desserts %}
       <div class="col-lg-3">
           <img class="thumbnail" src="{{product.imageURL}}">
           <div class="box-element product">
-              <h6><Strong>{{product.name}}</Strong></h6>
-              <hr>
+            <h6><Strong>{{product.name}}</Strong></h6>
+            <div class="description">
+                {{product.description}}
+            </div>
+            <hr>
               <button data-toggle="modal" data-target="#productModal" data-product={{product.id}} data-action="add" data-price={{product.price}} data-category="Desserts" class="btn btn-outline-secondary add-btn update-side">Add to Cart</button>
               {% comment %} <a class="btn btn-outline-success" href="#">View</a> {% endcomment %}
               <h4 style="display: inline-block; float: right">
@@ -104,16 +112,19 @@
   </section>
 
   <br>
-  <H2>Sandwiches</H2>
   <section id="Sandwiches">
+  <H2>Sandwiches</H2>
   <div class="row">
   {% for product in sandwiches %}
       <div class="col-lg-3">
           <img class="thumbnail" src="{{product.imageURL}}">
           <div class="box-element product">
-              <h6><Strong>{{product.name}}</Strong></h6>
-              <hr>
-              <button data-toggle="modal" data-target="#productModal" data-product={{product.id}} data-name={{product.name}} data-size={{product.size}} data-action="add" data-price={{product.price}} data-category="Sandwiches" class="btn btn-outline-secondary add-btn update-side">Add to Cart</button>
+            <h6><Strong>{{product.name}}</Strong></h6>
+            <div class="description">
+                {{product.description}}
+            </div>
+            <hr>
+              <button data-toggle="modal" data-target="#productModal" data-product={{product.id}} data-name={{product.name}} data-combo={{product.combo}} data-size={{product.size}} data-action="add" data-price={{product.price}} data-category="Sandwiches" class="btn btn-outline-secondary add-btn update-side">Add to Cart</button>
               {% comment %} <a class="btn btn-outline-success" href="#">View</a> {% endcomment %}
               <h4 style="display: inline-block; float: right">
                   <Strong id='price'>
@@ -130,15 +141,18 @@
   </section>
   
   <br>
-  <H2>Drinks</H2>
   <section id="Drinks">
+  <H2>Drinks</H2>
   <div class="row">
   {% for product in drinks %}
       <div class="col-lg-3">
           <img class="thumbnail" src="{{product.imageURL}}">
           <div class="box-element product">
               <h6><Strong>{{product.name}}</Strong></h6>
-              <hr>
+                <div class="description">
+                    {{product.description}}
+                </div>
+                <hr>
               <button data-toggle="modal" data-target="#productModal" data-product={{product.id}} data-name={{product.name}} data-action="add" data-price={{product.price}} data-category="Drinks" class="btn btn-outline-secondary add-btn update-side">Add to Cart</button>
               {% comment %} <a class="btn btn-outline-success" href="#">View</a> {% endcomment %}
               <h4 style="display: inline-block; float: right">
@@ -153,15 +167,18 @@
   </section>
 
   <br>
-  <H2>Sides</H2>
   <section id="Sides">
+  <H2>Sides</H2>
   <div class="row">
   {% for product in sides %}
       <div class="col-lg-3">
           <img class="thumbnail" src="{{product.imageURL}}">
           <div class="box-element product">
-              <h6><Strong>{{product.name}}</Strong></h6>
-              <hr>
+            <h6><Strong>{{product.name}}</Strong></h6>
+            <div class="description">
+                {{product.description}}
+            </div>
+            <hr>
               <button data-toggle="modal" data-target="#productModal" data-product={{product.id}} data-name={{product.name}} data-action="add" data-price={{product.price}} data-category="Sides" class="btn btn-outline-secondary add-btn update-side">Add to Cart</button>
               {% comment %} <a class="btn btn-outline-success" href="#">View</a> {% endcomment %}
               <h4 style="display: inline-block; float: right">
@@ -176,15 +193,18 @@
   </section>
 
   <br>
-  <H2>Breakfast</H2>
   <section id="Breakfast">
+  <H2>Breakfast</H2>
   <div class="row">
   {% for product in breakfast %}
       <div class="col-lg-3">
           <img class="thumbnail" src="{{product.imageURL}}">
           <div class="box-element product">
-              <h6><Strong>{{product.name}}</Strong></h6>
-              <hr>
+            <h6><Strong>{{product.name}}</Strong></h6>
+            <div class="description">
+                {{product.description}}
+            </div>
+            <hr>
               <button data-toggle="modal" data-target="#productModal" data-product={{product.id}} data-action="add" data-price={{product.price}} data-category="Breakfast" class="btn btn-outline-secondary add-btn update-side">Add to Cart</button>
               {% comment %} <a class="btn btn-outline-success" href="#">View</a> {% endcomment %}
               <h4 style="display: inline-block; float: right">
@@ -198,6 +218,7 @@
   </div>
   </section>
 
+    {% comment %} This is the modal that pops up when you click on a product {% endcomment %}
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -209,54 +230,6 @@
     
     <div class="overlay" id="overlay"></div>
 
-    <style>
-        /* Styles for the pop-up form */
-        .popup {
-          display: block;
-          position: fixed;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          padding: 20px;
-          background-color: #fff;
-          border: 1px solid #ccc;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          z-index: 9999;
-          border-radius: 3px;
-          overflow-y: auto;
-          max-height: 80%;
-        }
-        .popup h2 {
-          font-size: 20px;
-          margin-bottom: 10px;
-        }
-        .popup label {
-          display: block;
-          margin-bottom: 5px;
-        }
-        .popup input[type="checkbox"] {
-          margin-right: 5px;
-        }
-        .popup input[type="number"] {
-          width: 50px;
-        }
-        .popup button {
-          padding: 10px 20px;
-          font-size: 16px;
-          background-color: #007bff;
-          color: #fff;
-          border: none;
-          cursor: pointer;
-          border-radius: 3px;
-        }
-        .popup textarea {
-          width: 100%;
-          height: 80px;
-          margin-top: 10px;
-          padding: 5px;
-          border-radius: 3px;
-        }
-      </style>
 
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script>
@@ -274,79 +247,213 @@
                 modal.find('.modal-content').empty();
                 const name = button.data('name');
                 const size = button.data('size');
+                const combo = button.data('combo');
+                console.log(combo)
+                console.log(typeof combo)
                 console.log(button)
+                const comboString = `<h3>Choose a side (Required - Choose 1)</h3>
+                <label><input type="radio" name="side" value="Lays Plain"> Lays Plain</label>
+                <label><input type="radio" name="side" value="Slaw" data-price="0.40" readonly> Slaw + $0.40</label>
+                <label><input type="radio" name="side" value="Potato Salad" data-price="0.40" readonly> Potato Salad + $0.40</label>
+                <label><input type="radio" name="side" value="Macaroni Salad" data-price="0.40" readonly> Macaroni Salad + $0.40</label>
+                <label><input type="radio" name="side" value="Deviled Eggs" data-price="0.40" readonly> Deviled Eggs + $0.40</label>
+                <label><input type="radio" name="side" value="Deep River Chips Jalapeno"> Deep River Chips Jalapeno</label>
+                <label><input type="radio" name="side" value="Lays BBQ"> Lays BBQ</label>
+                <label><input type="radio" name="side" value="Deep River Chips Salt and Vinegar"> Deep River Chips Salt and Vinegar</label>
+                <label><input type="radio" name="side" value="Deep River Chips BBQ"> Deep River Chips BBQ</label>
+                <label><input type="radio" name="side" value="Deep River Chips Sour Cream and Onion"> Deep River Chips Sour Cream and Onion</label>
+                <label><input type="radio" name="side" value="Fritos"> Fritos</label>
+                <label><input type="radio" name="side" value="Fries" data-price="0.40" readonly> Fries + $0.40</label>
+
+
+                <h3>Choose a soda (Required - Choose 1)</h3>
+                <label><input type="radio" name="soda" value="Pepsi"> Pepsi</label>
+                <label><input type="radio" name="soda" value="Diet Pepsi"> Diet Pepsi</label>
+                <label><input type="radio" name="soda" value="Mountain Dew"> Mountain Dew</label>
+                <label><input type="radio" name="soda" value="Dr Pepper"> Dr Pepper</label>
+                <label><input type="radio" name="soda" value="Diet Dr Pepper"> Diet Dr Pepper</label>
+                <label><input type="radio" name="soda" value="Root Beer"> Root Beer</label>
+                <label><input type="radio" name="soda" value="Sierra Mist"> Sierra Mist</label>
+                <label><input type="radio" name="soda" value="Orange Gatorade"> Orange Gatorade</label>
+                <label><input type="radio" name="soda" value="Sweet Tea"> Sweet Tea</label>
+                <label><input type="radio" name="soda" value="Unsweet Tea"> UNSWEET TEA</label>
+                <label><input type="radio" name="soda" value="Home Made Lemonade"> Home Made Lemonade</label>
+                <label><input type="radio" name="soda" value="Bottled Water"> Bottled Water</label>
+
+                <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
+                <textarea placeholder="Special Instructions" name="instructions"></textarea>
+                <button data-product={{product.id}} data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
+                </form>
+                </div>`
+                // BLT sandwich, egg salad sandwich, pimento cheese sandwich, and grilled cheese sandwich are special cases
+                // BLT sandwich[7.25, 8.75], egg salad sandwich[5.50, 6.75], pimento cheese sandwich[5.50, 6.75], and grilled cheese sandwich[4.25, 5.40]
+                // BLT sandwich combo[11.50, 13.00], egg salad sandwich combo[9.55, 11.00], pimento cheese sandwich combo[8.90, 10.05], and grilled cheese sandwich combo[7.65, 8.80]
+                const BLT_Size = `<h3>Please choose a size (Required - Choose 1)</h3>
+                <label><input type="radio" name="size" value="Regular"> Regular $7.25</label>
+                <label><input type="radio" name="size" value="Large" data-price="1.50"> Large $8.75</label>`
+                const BLT_SizeCombo = `<h3>Please choose a size (Required - Choose 1)</h3>
+                <label><input type="radio" name="size" value="Regular"> Regular $11.50</label>
+                <label><input type="radio" name="size" value="Large" data-price="1.50"> Large $13.00</label>`
+                const Egg_SaladSize = `<h3>Please choose a size (Required - Choose 1)</h3>
+                <label><input type="radio" name="size" value="Regular"> Regular $5.50</label>
+                <label><input type="radio" name="size" value="Large" data-price="1.25"> Large $6.75</label>`
+                const Egg_SaladSizeCombo = `<h3>Please choose a size (Required - Choose 1)</h3>
+                <label><input type="radio" name="size" value="Regular"> Regular $9.55</label>
+                <label><input type="radio" name="size" value="Large" data-price="1.45"> Large $11.00</label>`
+                const Pimento_CheeseSize = `<h3>Please choose a size (Required - Choose 1)</h3>
+                <label><input type="radio" name="size" value="Regular"> Regular $5.50</label>
+                <label><input type="radio" name="size" value="Large" data-price="1.25"> Large $6.75</label>`
+                const Pimento_CheeseSizeCombo = `<h3>Please choose a size (Required - Choose 1)</h3>
+                <label><input type="radio" name="size" value="Regular"> Regular $8.90</label>
+                <label><input type="radio" name="size" value="Large" data-price="1.15"> Large $10.05</label>`
+                const Grilled_CheeseSize = `<h3>Please choose a size (Required - Choose 1)</h3>
+                <label><input type="radio" name="size" value="Regular"> Regular $4.25</label>
+                <label><input type="radio" name="size" value="Large" data-price="1.15"> Large $5.40</label>`
+                const Grilled_CheeseSizeCombo = `<h3>Please choose a size (Required - Choose 1)</h3>
+                <label><input type="radio" name="size" value="Regular"> Regular $7.65</label>
+                <label><input type="radio" name="size" value="Large" data-price="1.15"> Large $8.80</label>`
+                
+                const specialCase = {'BLT': BLT_Size, 'Egg Salad': Egg_SaladSize, 'Pimento Cheese': Pimento_CheeseSize, 'Grilled Cheese': Grilled_CheeseSize}
+                const specialCaseCombo = {'BLT': BLT_SizeCombo, 'Egg Salad': Egg_SaladSizeCombo, 'Pimento Cheese': Pimento_CheeseSizeCombo, 'Grilled Cheese': Grilled_CheeseSizeCombo}
                 switch (category) {
+
                     case 'Hotdogs':
-                        // Build and append ingredient form for Hotdogs
-                        modal.find('.modal-content').append(`
-                            <div class="popup" id="popup">
-                                <h2>Choose a side for Hotdogs (required).</h2>
-                                <form>
-                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Mustard"> Add Mustard</label>
-                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Ketchup"> Add Ketchup</label>
-                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Chili"> Add Chili</label>
-                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Onions"> Add Onions</label>
-                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Slaw"> Add Slaw</label>
-                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Relish"> Add Relish</label>
-                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Spicy Mustard"> Add Spicy Mustard</label>
-                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Kraut"> Add Kraut</label>
-                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Cheese"> Add Cheese</label>
-                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Mayo"> Add Mayo</label>
-                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Red Onion Sauce"> Add Red Onion Sauce</label>
-                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Pickles"> Add Pickles</label>
-                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Jalapenos"> Add Jalapenos</label>
-                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Grilled Peppers and Onions"> Add Grilled Peppers and Onions</label>
-                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Add Tomatoes"> Add Tomatoes</label>
-                                    <label><input type="checkbox" name="hotdogs-ingredient" value="Plain"> Plain</label>
+                    // combo hotdogs pop up form
+                        if(combo == "True"){
+                            modal.find('.modal-content').append(`
+                                <div class="popup" id="popup">
+                                    <h2>Choose sides for Hotdogs combo (required).</h2>
+                                    <form>
+                                        <h3>Choose your dressings (Required - Choose at least 1)</h3>
+                                        <label><input type="checkbox" name="topping" value="Add Mustard"> Add Mustard</label>
+                                        <label><input type="checkbox" name="topping" value="Add Ketchup"> Add Ketchup</label>
+                                        <label><input type="checkbox" name="topping" value="Add Chili"> Add Chili</label>
+                                        <label><input type="checkbox" name="topping" value="Add Onions"> Add Onions</label>
+                                        <label><input type="checkbox" name="topping" value="Add Slaw"> Add Slaw</label>
+                                        <label><input type="checkbox" name="topping" value="Add Relish"> Add Relish</label>
+                                        <label><input type="checkbox" name="topping" value="Add Spicy Mustard"> Add Spicy Mustard</label>
+                                        <label><input type="checkbox" name="topping" value="Add Kraut"> Add Kraut</label>
+                                        <label><input type="checkbox" name="topping" value="Add Cheese"> Add Cheese</label>
+                                        <label><input type="checkbox" name="topping" value="Add Mayo"> Add Mayo</label>
+                                        <label><input type="checkbox" name="topping" value="Add Red Onion Sauce"> Add Red Onion Sauce</label>
+                                        <label><input type="checkbox" name="topping" value="Add Pickles"> Add Pickles</label>
+                                        <label><input type="checkbox" name="topping" value="Add Jalapenos"> Add Jalapenos</label>
+                                        <label><input type="checkbox" name="topping" value="Add Grilled Peppers and Onions"> Add Grilled Peppers and Onions</label>
+                                        <label><input type="checkbox" name="topping" value="Add Tomatoes"> Add Tomatoes</label>
+                                        <label><input type="checkbox" name="topping" value="Plain"> Plain</label>
 
-                                    <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
-                                    <textarea placeholder="Special Instructions" name="instructions"></textarea>
-                                    <button data-product={{product.id}} data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
-                                </form>
-                            </div>
-                        `);
+                                        ` + comboString
+                            );
+                        // For regular hotdogs pop up form
+                        } else {
+                            modal.find('.modal-content').append(`
+                                <div class="popup" id="popup">
+                                    <h2>Choose a side for Hotdogs (required).</h2>
+                                    <form>
+                                        <label><input type="checkbox" name="topping" value="Add Mustard"> Add Mustard</label>
+                                        <label><input type="checkbox" name="topping" value="Add Ketchup"> Add Ketchup</label>
+                                        <label><input type="checkbox" name="topping" value="Add Chili"> Add Chili</label>
+                                        <label><input type="checkbox" name="topping" value="Add Onions"> Add Onions</label>
+                                        <label><input type="checkbox" name="topping" value="Add Slaw"> Add Slaw</label>
+                                        <label><input type="checkbox" name="topping" value="Add Relish"> Add Relish</label>
+                                        <label><input type="checkbox" name="topping" value="Add Spicy Mustard"> Add Spicy Mustard</label>
+                                        <label><input type="checkbox" name="topping" value="Add Kraut"> Add Kraut</label>
+                                        <label><input type="checkbox" name="topping" value="Add Cheese"> Add Cheese</label>
+                                        <label><input type="checkbox" name="topping" value="Add Mayo"> Add Mayo</label>
+                                        <label><input type="checkbox" name="topping" value="Add Red Onion Sauce"> Add Red Onion Sauce</label>
+                                        <label><input type="checkbox" name="topping" value="Add Pickles"> Add Pickles</label>
+                                        <label><input type="checkbox" name="topping" value="Add Jalapenos"> Add Jalapenos</label>
+                                        <label><input type="checkbox" name="topping" value="Add Grilled Peppers and Onions"> Add Grilled Peppers and Onions</label>
+                                        <label><input type="checkbox" name="topping" value="Add Tomatoes"> Add Tomatoes</label>
+                                        <label><input type="checkbox" name="topping" value="Plain"> Plain</label>
+
+                                        <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
+                                        <textarea placeholder="Special Instructions" name="instructions"></textarea>
+                                        <button data-product={{product.id}} data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
+                                    </form>
+                                </div>
+                            `);
+                        };
                         break;
+
+                        
                     case 'Soups':
-                        // Build and append topping and dressing form for Soups
-                        modal.find('.modal-content').append(`
-                            <div class="popup" id="popup">
-                                <form>
-                                    <h3>Choose a dressing (Required - Choose 1)</h3>
-                                    <label><input type="radio" name="soups-dressing" value="Ranch Dressing"> Ranch Dressing</label>
-                                    <label><input type="radio" name="soups-dressing" value="Italian Dressing"> Italian Dressing</label>
-                                    <label><input type="radio" name="soups-dressing" value="French Dressing"> French Dressing</label>
-                                    <label><input type="radio" name="soups-dressing" value="Thousand Island"> Thousand Island Dressing</label>
-                                    <label><input type="radio" name="soups-dressing" value="Honey Mustard Dressing"> Honey Mustard Dressing</label>
-                                    
-                                    
-                                    <h3>Would you like toppings? (Required - Choose a minimum of 1)</h3>
-                                    <label><input type="checkbox" name="soups-topping" value="Add Lettuce"> Lettuce</label>
-                                    <label><input type="checkbox" name="soups-topping" value="Add Tomato"> Tomato</label>
-                                    <label><input type="checkbox" name="soups-topping" value="Add Cucumber"> Cucumber</label>
-                                    <label><input type="checkbox" name="soups-topping" value="Add Onions"> Onions</label>
-                                    <label><input type="checkbox" name="soups-topping" value="Add Olives"> Olives</label>
-                                    <label><input type="checkbox" name="soups-topping" value="Add Eggs"> Eggs</label>
-                                    <label><input type="checkbox" name="soups-topping" value="Add Green peppers"> Green Peppers</label>
-                                    <label><input type="checkbox" name="soups-topping" value="Add Banana Peppers"> Banana Peppers</label>
-                                    <label><input type="checkbox" name="soups-topping" value="Add Jalapeno Peppers"> Jalapeno Peppers</label>
-                                    <label><input type="checkbox" name="soups-topping" value="Add Salt and Pepper"> Salt and Pepper</label>
-                                    <label><input type="checkbox" name="soups-topping" value="Add Oregano"> Oregano</label>
-                                    <label><input type="checkbox" name="soups-topping" value="Add Oil-and-Vinegar"> Oil and Vinegar</label>
-                                    <label><input type="checkbox" name="soups-topping" value="Add Pickles"> Pickles</label>
-                                    <label><input type="checkbox" name="soups-topping" value="Add American Cheese"> American Cheese</label>
-                                    <label><input type="checkbox" name="soups-topping" value="Add Provolone Cheese"> Provolone Cheese</label>
-                                    <label><input type="checkbox" name="soups-topping" value="Add Swiss Cheese"> Swiss Cheese</label>
-                                    
+                        // Soups and Salads combo pop up form
+                        if (combo == "True"){
+                            modal.find('.modal-content').append(`
+                                <div class="popup" id="popup">
+                                    <form>
+                                        <h3>Choose a dressing (Required - Choose 1)</h3>
+                                        <label><input type="radio" name="soups-dressing" value="Ranch Dressing"> Ranch Dressing</label>
+                                        <label><input type="radio" name="soups-dressing" value="Italian Dressing"> Italian Dressing</label>
+                                        <label><input type="radio" name="soups-dressing" value="French Dressing"> French Dressing</label>
+                                        <label><input type="radio" name="soups-dressing" value="Thousand Island"> Thousand Island Dressing</label>
+                                        <label><input type="radio" name="soups-dressing" value="Honey Mustard Dressing"> Honey Mustard Dressing</label>
+                                        
+                                        
+                                        <h3>Would you like toppings? (Required - Choose a minimum of 1)</h3>
+                                        <label><input type="checkbox" name="topping" value="Add Lettuce"> Lettuce</label>
+                                        <label><input type="checkbox" name="topping" value="Add Tomato"> Tomato</label>
+                                        <label><input type="checkbox" name="topping" value="Add Cucumber"> Cucumber</label>
+                                        <label><input type="checkbox" name="topping" value="Add Onions"> Onions</label>
+                                        <label><input type="checkbox" name="topping" value="Add Olives"> Olives</label>
+                                        <label><input type="checkbox" name="topping" value="Add Eggs"> Eggs</label>
+                                        <label><input type="checkbox" name="topping" value="Add Green peppers"> Green Peppers</label>
+                                        <label><input type="checkbox" name="topping" value="Add Banana Peppers"> Banana Peppers</label>
+                                        <label><input type="checkbox" name="topping" value="Add Jalapeno Peppers"> Jalapeno Peppers</label>
+                                        <label><input type="checkbox" name="topping" value="Add Salt and Pepper"> Salt and Pepper</label>
+                                        <label><input type="checkbox" name="topping" value="Add Oregano"> Oregano</label>
+                                        <label><input type="checkbox" name="topping" value="Add Oil-and-Vinegar"> Oil and Vinegar</label>
+                                        <label><input type="checkbox" name="topping" value="Add Pickles"> Pickles</label>
+                                        <label><input type="checkbox" name="topping" value="Add American Cheese"> American Cheese</label>
+                                        <label><input type="checkbox" name="topping" value="Add Provolone Cheese"> Provolone Cheese</label>
+                                        <label><input type="checkbox" name="topping" value="Add Swiss Cheese"> Swiss Cheese</label>
+ 
+                            ` + comboString);
+                        // Soups and Salads regular pop up form
+                        } else {
+                            modal.find('.modal-content').append(`
+                                <div class="popup" id="popup">
+                                    <form>
+                                        <h3>Choose a dressing (Required - Choose 1)</h3>
+                                        <label><input type="radio" name="soups-dressing" value="Ranch Dressing"> Ranch Dressing</label>
+                                        <label><input type="radio" name="soups-dressing" value="Italian Dressing"> Italian Dressing</label>
+                                        <label><input type="radio" name="soups-dressing" value="French Dressing"> French Dressing</label>
+                                        <label><input type="radio" name="soups-dressing" value="Thousand Island"> Thousand Island Dressing</label>
+                                        <label><input type="radio" name="soups-dressing" value="Honey Mustard Dressing"> Honey Mustard Dressing</label>
+                                        
+                                        
+                                        <h3>Would you like toppings? (Required - Choose a minimum of 1)</h3>
+                                        <label><input type="checkbox" name="topping" value="Add Lettuce"> Lettuce</label>
+                                        <label><input type="checkbox" name="topping" value="Add Tomato"> Tomato</label>
+                                        <label><input type="checkbox" name="topping" value="Add Cucumber"> Cucumber</label>
+                                        <label><input type="checkbox" name="topping" value="Add Onions"> Onions</label>
+                                        <label><input type="checkbox" name="topping" value="Add Olives"> Olives</label>
+                                        <label><input type="checkbox" name="topping" value="Add Eggs"> Eggs</label>
+                                        <label><input type="checkbox" name="topping" value="Add Green peppers"> Green Peppers</label>
+                                        <label><input type="checkbox" name="topping" value="Add Banana Peppers"> Banana Peppers</label>
+                                        <label><input type="checkbox" name="topping" value="Add Jalapeno Peppers"> Jalapeno Peppers</label>
+                                        <label><input type="checkbox" name="topping" value="Add Salt and Pepper"> Salt and Pepper</label>
+                                        <label><input type="checkbox" name="topping" value="Add Oregano"> Oregano</label>
+                                        <label><input type="checkbox" name="topping" value="Add Oil-and-Vinegar"> Oil and Vinegar</label>
+                                        <label><input type="checkbox" name="topping" value="Add Pickles"> Pickles</label>
+                                        <label><input type="checkbox" name="topping" value="Add American Cheese"> American Cheese</label>
+                                        <label><input type="checkbox" name="topping" value="Add Provolone Cheese"> Provolone Cheese</label>
+                                        <label><input type="checkbox" name="topping" value="Add Swiss Cheese"> Swiss Cheese</label>
+                                        
 
-                                    <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
-                                    <textarea placeholder="Special Instructions" name="instructions"></textarea>
-                                    <button data-product={{product.id}} data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
-                                </form>
-                            </div>
-                        `);
+                                        <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
+                                        <textarea placeholder="Special Instructions" name="instructions"></textarea>
+                                        <button data-product={{product.id}} data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
+                                    </form>
+                                </div>
+                            `);
+                        }
                         break;
-                    // Add cases for other categories if needed
+
+
                     case 'Desserts':
+                    // Desserts does not have any combo options
                     modal.find('.modal-content').append(`
                         <div class="popup" id="popup">
                             <form>
@@ -357,162 +464,191 @@
                         </div>
                     `);
                         break;
-                    // Sandwiches
+
+                    // BLT sandwich, egg salad sandwich, pimento cheese sandwich, and grilled cheese sandwich are special cases
                     case 'Sandwiches':
-                    // If the product's name is have Grilled Cheese, add a choice of cheese (Choose a cheese Required - Choose 1. American Cheese Provolone Cheese Swiss Cheese Pepper Jack)
                     
-                    if (name.includes('Grilled')) {
-                        modal.find('.modal-content').append(`
+                    if (combo == "True") {
+                        let str = null;
+                        for (const [key, value] of Object.entries(specialCaseCombo)) {
+                            if (key.includes(name.split(" ")[0])) {
+                                str = value;
+                            }
+                        }
+                        // Handle the special cases for sandwiches
+                        if (str != null) {
+                            modal.find('.modal-content').append(`
                             <div class="popup" id="popup">
-                                <form>
+                                <form>` + str + `
                                     <h3>Choose a bread (Required - Choose 1)</h3>
-                                    <label><input type="radio" name="sandwiches-grilled-bread" value="White Bread"> White Bread</label>
-                                    <label><input type="radio" name="sandwiches-grilled-bread" value="Wheat Bread"> Wheat Bread</label>
-                                    <label><input type="radio" name="sandwiches-grilled-bread" value="Rye Bread"> Rye Bread</label>
-
+                                    <label><input type="radio" name="bread" value="White Bread"> White Bread</label>
+                                    <label><input type="radio" name="bread" value="Wheat Bread"> Wheat Bread</label>
+                                    <label><input type="radio" name="bread" value="Rye Bread"> Rye Bread</label>
+    
                                     <h3>Choose a cheese (Required - Choose 1)</h3>
-                                    <label><input type="radio" name="sandwiches-grilled-cheese" value="American Cheese"> American Cheese</label>
-                                    <label><input type="radio" name="sandwiches-grilled-cheese" value="Provolone Cheese"> Provolone Cheese</label>
-                                    <label><input type="radio" name="sandwiches-grilled-cheese" value="Swiss Cheese"> Swiss Cheese</label>
-                                    <label><input type="radio" name="sandwiches-grilled-cheese" value="Pepper Jack"> Pepper Jack</label>
-
+                                    <label><input type="radio" name="cheese" value="American Cheese"> American Cheese</label>
+                                    <label><input type="radio" name="cheese" value="Provolone Cheese"> Provolone Cheese</label>
+                                    <label><input type="radio" name="cheese" value="Swiss Cheese"> Swiss Cheese</label>
+                                    <label><input type="radio" name="cheese" value="Pepper Jack"> Pepper Jack</label>
+    
                                     <h3>Would you like toppings? (Optional - Choose as many as you like)</h3>
-                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Lettuce"> Add Lettuce</label>
-                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Tomato"> Add Tomato</label>
-                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Mayo"> Add Mayo</label>
-                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Mustard"> Add Mustard</label>
-                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Onions"> Add Onions</label>
-                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Pickles"> Add Pickles</label>
-                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Olives"> Add Olives</label>
-                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add American Cheese"> Add American Cheese</label>
-                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Provolone Cheese"> Add Provolone Cheese</label>
-                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Swiss Cheese"> Add Swiss Cheese</label>
-                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Green Peppers"> Add Green Peppers</label>
-                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Banana Peppers"> Add Banana Peppers</label>
-                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Jalapeno Peppers"> Add Jalapeno Peppers</label>
-                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Cucumbers"> Add Cucumbers</label>
-                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Oil"> Add Oil</label>
-                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Vinegar"> Add Vinegar</label>
-                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Salt"> Add Salt</label>
-                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Pepper"> Add Pepper</label>
-                                    <label><input type="checkbox" name="sandwiches-grilled-topping" value="Add Oregano"> Add Oregano</label>
+                                    <label><input type="checkbox" name="topping" value="Add Lettuce"> Add Lettuce</label>
+                                    <label><input type="checkbox" name="topping" value="Add Tomato"> Add Tomato</label>
+                                    <label><input type="checkbox" name="topping" value="Add Mayo"> Add Mayo</label>
+                                    <label><input type="checkbox" name="topping" value="Add Mustard"> Add Mustard</label>
+                                    <label><input type="checkbox" name="topping" value="Add Onions"> Add Onions</label>
+                                    <label><input type="checkbox" name="topping" value="Add Pickles"> Add Pickles</label>
+                                    <label><input type="checkbox" name="topping" value="Add Olives"> Add Olives</label>
+                                    <label><input type="checkbox" name="topping" value="Add American Cheese"> Add American Cheese</label>
+                                    <label><input type="checkbox" name="topping" value="Add Provolone Cheese"> Add Provolone Cheese</label>
+                                    <label><input type="checkbox" name="topping" value="Add Swiss Cheese"> Add Swiss Cheese</label>
+                                    <label><input type="checkbox" name="topping" value="Add Green Peppers"> Add Green Peppers</label>
+                                    <label><input type="checkbox" name="topping" value="Add Banana Peppers"> Add Banana Peppers</label>
+                                    <label><input type="checkbox" name="topping" value="Add Jalapeno Peppers"> Add Jalapeno Peppers</label>
+                                    <label><input type="checkbox" name="topping" value="Add Cucumbers"> Add Cucumbers</label>
+                                    <label><input type="checkbox" name="topping" value="Add Oil"> Add Oil</label>
+                                    <label><input type="checkbox" name="topping" value="Add Vinegar"> Add Vinegar</label>
+                                    <label><input type="checkbox" name="topping" value="Add Salt"> Add Salt</label>
+                                    <label><input type="checkbox" name="topping" value="Add Pepper"> Add Pepper</label>
+                                    <label><input type="checkbox" name="topping" value="Add Oregano"> Add Oregano</label>
 
+                            ` + comboString
+                            );
+                        } else {
+                            // If the sandwich is not a special case
+                            modal.find('.modal-content').append(`
+                                <div class="popup" id="popup">
+                                    <form>
+                                        <h3>Please choose a size (Required - Choose 1)</h3>
+                                        <label><input type="radio" name="size" value="Regular" readonly> Regular $11.25</label>
+                                        <label><input type="radio" name="size" value="Large" data-price="1.50" readonly> Large $12.75</label>
 
+                                        <h3>Choose a bread (Required - Choose 1)</h3>
+                                        <label><input type="radio" name="bread" value="White Bread"> White Bread</label>
+                                        <label><input type="radio" name="bread" value="Wheat Bread"> Wheat Bread</label>
+                                        <label><input type="radio" name="bread" value="Rye Bread"> Rye Bread</label>
+
+                                        <h3>Would you like toppings? (Optional - Choose as many as you like)</h3>
+                                        <label><input type="checkbox" name="topping" value="Add Lettuce"> Add Lettuce</label>
+                                        <label><input type="checkbox" name="topping" value="Add Tomato"> Add Tomato</label>
+                                        <label><input type="checkbox" name="topping" value="Add Mayo"> Add Mayo</label>
+                                        <label><input type="checkbox" name="topping" value="Add Mustard"> Add Mustard</label>
+                                        <label><input type="checkbox" name="topping" value="Add Onions"> Add Onions</label>
+                                        <label><input type="checkbox" name="topping" value="Add Pickles"> Add Pickles</label>
+                                        <label><input type="checkbox" name="topping" value="Add Olives"> Add Olives</label>
+                                        <label><input type="checkbox" name="topping" value="Add American Cheese"> Add American Cheese</label>
+                                        <label><input type="checkbox" name="topping" value="Add Provolone Cheese"> Add Provolone Cheese</label>
+                                        <label><input type="checkbox" name="topping" value="Add Swiss Cheese"> Add Swiss Cheese</label>
+                                        <label><input type="checkbox" name="topping" value="Add Green Peppers"> Add Green Peppers</label>
+                                        <label><input type="checkbox" name="topping" value="Add Banana Peppers"> Add Banana Peppers</label>
+                                        <label><input type="checkbox" name="topping" value="Add Jalapeno Peppers"> Add Jalapeno Peppers</label>
+                                        <label><input type="checkbox" name="topping" value="Add Cucumbers"> Add Cucumbers</label>
+                                        <label><input type="checkbox" name="topping" value="Add Oil"> Add Oil</label>
+                                        <label><input type="checkbox" name="topping" value="Add Vinegar"> Add Vinegar</label>
+                                        <label><input type="checkbox" name="topping" value="Add Salt"> Add Salt</label>
+                                        <label><input type="checkbox" name="topping" value="Add Pepper"> Add Pepper</label>
+                                        <label><input type="checkbox" name="topping" value="Add Oregano"> Add Oregano</label>
+
+                                ` + comboString );
+                        }
+
+                    } else {
+                        let str = null;
+                        for (const [key, value] of Object.entries(specialCase)) {
+                            if (key.includes(name.split(" ")[0])) {
+                                str = value;
+                            }
+                        }
+                        // Handle the special cases for sandwiches
+                        if (str != null) {
+                            modal.find('.modal-content').append(`
+                            <div class="popup" id="popup">
+                                <form>` + str + `
+                                    <h3>Choose a bread (Required - Choose 1)</h3>
+                                    <label><input type="radio" name="bread" value="White Bread"> White Bread</label>
+                                    <label><input type="radio" name="bread" value="Wheat Bread"> Wheat Bread</label>
+                                    <label><input type="radio" name="bread" value="Rye Bread"> Rye Bread</label>
+    
+                                    <h3>Choose a cheese (Required - Choose 1)</h3>
+                                    <label><input type="radio" name="cheese" value="American Cheese"> American Cheese</label>
+                                    <label><input type="radio" name="cheese" value="Provolone Cheese"> Provolone Cheese</label>
+                                    <label><input type="radio" name="cheese" value="Swiss Cheese"> Swiss Cheese</label>
+                                    <label><input type="radio" name="cheese" value="Pepper Jack"> Pepper Jack</label>
+    
+                                    <h3>Would you like toppings? (Optional - Choose as many as you like)</h3>
+                                    <label><input type="checkbox" name="topping" value="Add Lettuce"> Add Lettuce</label>
+                                    <label><input type="checkbox" name="topping" value="Add Tomato"> Add Tomato</label>
+                                    <label><input type="checkbox" name="topping" value="Add Mayo"> Add Mayo</label>
+                                    <label><input type="checkbox" name="topping" value="Add Mustard"> Add Mustard</label>
+                                    <label><input type="checkbox" name="topping" value="Add Onions"> Add Onions</label>
+                                    <label><input type="checkbox" name="topping" value="Add Pickles"> Add Pickles</label>
+                                    <label><input type="checkbox" name="topping" value="Add Olives"> Add Olives</label>
+                                    <label><input type="checkbox" name="topping" value="Add American Cheese"> Add American Cheese</label>
+                                    <label><input type="checkbox" name="topping" value="Add Provolone Cheese"> Add Provolone Cheese</label>
+                                    <label><input type="checkbox" name="topping" value="Add Swiss Cheese"> Add Swiss Cheese</label>
+                                    <label><input type="checkbox" name="topping" value="Add Green Peppers"> Add Green Peppers</label>
+                                    <label><input type="checkbox" name="topping" value="Add Banana Peppers"> Add Banana Peppers</label>
+                                    <label><input type="checkbox" name="topping" value="Add Jalapeno Peppers"> Add Jalapeno Peppers</label>
+                                    <label><input type="checkbox" name="topping" value="Add Cucumbers"> Add Cucumbers</label>
+                                    <label><input type="checkbox" name="topping" value="Add Oil"> Add Oil</label>
+                                    <label><input type="checkbox" name="topping" value="Add Vinegar"> Add Vinegar</label>
+                                    <label><input type="checkbox" name="topping" value="Add Salt"> Add Salt</label>
+                                    <label><input type="checkbox" name="topping" value="Add Pepper"> Add Pepper</label>
+                                    <label><input type="checkbox" name="topping" value="Add Oregano"> Add Oregano</label>
+    
+    
                                     <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
                                     <textarea placeholder="Special Instructions" name="instructions"></textarea>
                                     <button data-product={{product.id}} data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
                                 </form>
                             </div>
-                        `);
-                    } else if (size.includes('combo')) {
-                        modal.find('.modal-content').append(`
-                        <div class="popup" id="popup">
-                            <form>
-                                <h3>Choose a bread (Required - Choose 1)</h3>
-                                <label><input type="radio" name="combo-bread" value="White Bread"> White Bread</label>
-                                <label><input type="radio" name="combo-bread" value="Wheat Bread"> Wheat Bread</label>
-                                <label><input type="radio" name="combo-bread" value="Rye Bread"> Rye Bread</label>
+                            `);
+                        } else {
+                            modal.find('.modal-content').append(`
+                                <div class="popup" id="popup">
+                                    <form>
+                                        <h3>Please choose a size (Required - Choose 1)</h3>
+                                        <label><input type="radio" name="size" value="Regular" readonly> Regular $11.25</label>
+                                        <label><input type="radio" name="size" value="Large" data-price="1.50" readonly> Large $12.75</label>
 
-                                <h3>Would you like toppings? (Optional - Choose as many as you like)</h3>
-                                <label><input type="checkbox" name="combo-topping" value="Add Lettuce"> Add Lettuce</label>
-                                <label><input type="checkbox" name="combo-topping" value="Add Tomato"> Add Tomato</label>
-                                <label><input type="checkbox" name="combo-topping" value="Add Mayo"> Add Mayo</label>
-                                <label><input type="checkbox" name="combo-topping" value="Add Mustard"> Add Mustard</label>
-                                <label><input type="checkbox" name="combo-topping" value="Add Onions"> Add Onions</label>
-                                <label><input type="checkbox" name="combo-topping" value="Add Pickles"> Add Pickles</label>
-                                <label><input type="checkbox" name="combo-topping" value="Add Olives"> Add Olives</label>
-                                <label><input type="checkbox" name="combo-topping" value="Add American Cheese"> Add American Cheese</label>
-                                <label><input type="checkbox" name="combo-topping" value="Add Provolone Cheese"> Add Provolone Cheese</label>
-                                <label><input type="checkbox" name="combo-topping" value="Add Swiss Cheese"> Add Swiss Cheese</label>
-                                <label><input type="checkbox" name="combo-topping" value="Add Green Peppers"> Add Green Peppers</label>
-                                <label><input type="checkbox" name="combo-topping" value="Add Banana Peppers"> Add Banana Peppers</label>
-                                <label><input type="checkbox" name="combo-topping" value="Add Jalapeno Peppers"> Add Jalapeno Peppers</label>
-                                <label><input type="checkbox" name="combo-topping" value="Add Cucumbers"> Add Cucumbers</label>
-                                <label><input type="checkbox" name="combo-topping" value="Add Oil"> Add Oil</label>
-                                <label><input type="checkbox" name="combo-topping" value="Add Vinegar"> Add Vinegar</label>
-                                <label><input type="checkbox" name="combo-topping" value="Add Salt"> Add Salt</label>
-                                <label><input type="checkbox" name="combo-topping" value="Add Pepper"> Add Pepper</label>
-                                <label><input type="checkbox" name="combo-topping" value="Add Oregano"> Add Oregano</label>
+                                        <h3>Choose a bread (Required - Choose 1)</h3>
+                                        <label><input type="radio" name="bread" value="White Bread"> White Bread</label>
+                                        <label><input type="radio" name="bread" value="Wheat Bread"> Wheat Bread</label>
+                                        <label><input type="radio" name="bread" value="Rye Bread"> Rye Bread</label>
 
-  
-                                <h3>Choose a side (Required - Choose 1)</h3>
-                                <label><input type="radio" name="combo-side" value="Lays Plain"> Lays Plain</label>
-                                <label><input type="radio" name="combo-side" value="Slaw" data-price="0.40"> Slaw + $0.40</label>
-                                <label><input type="radio" name="combo-side" value="Potato Salad" data-price="0.40"> Potato Salad + $0.40</label>
-                                <label><input type="radio" name="combo-side" value="Macaroni Salad" data-price="0.40"> Macaroni Salad + $0.40</label>
-                                <label><input type="radio" name="combo-side" value="Deviled Eggs" data-price="0.40"> Deviled Eggs + $0.40</label>
-                                <label><input type="radio" name="combo-side" value="Deep River Chips Jalapeno"> Deep River Chips Jalapeno</label>
-                                <label><input type="radio" name="combo-side" value="Lays BBQ"> Lays BBQ</label>
-                                <label><input type="radio" name="combo-side" value="Deep River Chips Salt and Vinegar"> Deep River Chips Salt and Vinegar</label>
-                                <label><input type="radio" name="combo-side" value="Deep River Chips BBQ"> Deep River Chips BBQ</label>
-                                <label><input type="radio" name="combo-side" value="Deep River Chips Sour Cream and Onion"> Deep River Chips Sour Cream and Onion</label>
-                                <label><input type="radio" name="combo-side" value="Fritos"> Fritos</label>
-                                <label><input type="radio" name="combo-side" value="Fries" data-price="0.40"> Fries + $0.40</label>
+                                        <label><input type="checkbox" name="topping" value="Add Lettuce"> Add Lettuce</label>
+                                        <label><input type="checkbox" name="topping" value="Add Tomato"> Add Tomato</label>
+                                        <label><input type="checkbox" name="topping" value="Add Mayo"> Add Mayo</label>
+                                        <label><input type="checkbox" name="topping" value="Add Mustard"> Add Mustard</label>
+                                        <label><input type="checkbox" name="topping" value="Add Onions"> Add Onions</label>
+                                        <label><input type="checkbox" name="topping" value="Add Pickles"> Add Pickles</label>
+                                        <label><input type="checkbox" name="topping" value="Add Olives"> Add Olives</label>
+                                        <label><input type="checkbox" name="topping" value="Add American Cheese"> Add American Cheese</label>
+                                        <label><input type="checkbox" name="topping" value="Add Provolone Cheese"> Add Provolone Cheese</label>
+                                        <label><input type="checkbox" name="topping" value="Add Swiss Cheese"> Add Swiss Cheese</label>
+                                        <label><input type="checkbox" name="topping" value="Add Green Peppers"> Add Green Peppers</label>
+                                        <label><input type="checkbox" name="topping" value="Add Banana Peppers"> Add Banana Peppers</label>
+                                        <label><input type="checkbox" name="topping" value="Add Jalapeno Peppers"> Add Jalapeno Peppers</label>
+                                        <label><input type="checkbox" name="topping" value="Add Cucumbers"> Add Cucumbers</label>
+                                        <label><input type="checkbox" name="topping" value="Add Oil"> Add Oil</label>
+                                        <label><input type="checkbox" name="topping" value="Add Vinegar"> Add Vinegar</label>
+                                        <label><input type="checkbox" name="topping" value="Add Salt"> Add Salt</label>
+                                        <label><input type="checkbox" name="topping" value="Add Pepper"> Add Pepper</label>
+                                        <label><input type="checkbox" name="topping" value="Add Oregano"> Add Oregano</label>
 
 
-                                <h3>Choose a soda (Required - Choose 1)</h3>
-                                <label><input type="radio" name="combo-soda" value="Pepsi"> Pepsi</label>
-                                <label><input type="radio" name="combo-soda" value="Diet Pepsi"> Diet Pepsi</label>
-                                <label><input type="radio" name="combo-soda" value="Mountain Dew"> Mountain Dew</label>
-                                <label><input type="radio" name="combo-soda" value="Dr Pepper"> Dr Pepper</label>
-                                <label><input type="radio" name="combo-soda" value="Diet Dr Pepper"> Diet Dr Pepper</label>
-                                <label><input type="radio" name="combo-soda" value="Root Beer"> Root Beer</label>
-                                <label><input type="radio" name="combo-soda" value="Sierra Mist"> Sierra Mist</label>
-                                <label><input type="radio" name="combo-soda" value="Orange Gatorade"> Orange Gatorade</label>
-                                <label><input type="radio" name="combo-soda" value="Sweet Tea"> Sweet Tea</label>
-                                <label><input type="radio" name="combo-soda" value="Unsweet Tea"> UNSWEET TEA</label>
-                                <label><input type="radio" name="combo-soda" value="Home Made Lemonade"> Home Made Lemonade</label>
-                                <label><input type="radio" name="combo-soda" value="Bottled Water"> Bottled Water</label>
+                                        <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
+                                        <textarea placeholder="Special Instructions" name="instructions"></textarea>
+                                        <button data-product="{{ product.id }}" data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
+                                    </form>
 
-
-                                <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
-                                <textarea placeholder="Special Instructions" name="instructions"></textarea>
-                                <button data-product="{{ product.id }}" data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
-                            </form>
-
-                        </div>
-                    `);
-                    }
-                     else {
-
-                        modal.find('.modal-content').append(`
-                            <div class="popup" id="popup">
-                                <form>
-                                    <h3>Choose a bread (Required - Choose 1)</h3>
-                                    <label><input type="radio" name="sandwiches-bread" value="White Bread"> White Bread</label>
-                                    <label><input type="radio" name="sandwiches-bread" value="Wheat Bread"> Wheat Bread</label>
-                                    <label><input type="radio" name="sandwiches-bread" value="Rye Bread"> Rye Bread</label>
-
-                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Lettuce"> Add Lettuce</label>
-                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Tomato"> Add Tomato</label>
-                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Mayo"> Add Mayo</label>
-                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Mustard"> Add Mustard</label>
-                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Onions"> Add Onions</label>
-                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Pickles"> Add Pickles</label>
-                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Olives"> Add Olives</label>
-                                    <label><input type="checkbox" name="sandwiches-topping" value="Add American Cheese"> Add American Cheese</label>
-                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Provolone Cheese"> Add Provolone Cheese</label>
-                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Swiss Cheese"> Add Swiss Cheese</label>
-                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Green Peppers"> Add Green Peppers</label>
-                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Banana Peppers"> Add Banana Peppers</label>
-                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Jalapeno Peppers"> Add Jalapeno Peppers</label>
-                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Cucumbers"> Add Cucumbers</label>
-                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Oil"> Add Oil</label>
-                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Vinegar"> Add Vinegar</label>
-                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Salt"> Add Salt</label>
-                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Pepper"> Add Pepper</label>
-                                    <label><input type="checkbox" name="sandwiches-topping" value="Add Oregano"> Add Oregano</label>
-
-
-                                    <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
-                                    <textarea placeholder="Special Instructions" name="instructions"></textarea>
-                                    <button data-product="{{ product.id }}" data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
-                                </form>
-
-                            </div>
-                        `);
+                                </div>
+                            `);
+                        }
                     }
                         break;
+
+                    
                     case 'Drinks':
                     // If the drink is fountain drink, add a choice of soda 
                     console.log(name);
@@ -520,6 +656,10 @@
                         modal.find('.modal-content').append(`
                             <div class="popup" id="popup">
                                 <form>
+                                    <h3>Please choose a size (Required - Choose 1)</h3>
+                                    <label><input type="radio" name="size" value="Regular"> Regular (20 oz) $2.50</label>
+                                    <label><input type="radio" name="size" value="Large" data-price="0.50"> Large (32 oz) $3.00</label>
+
                                     <h3>Choose a soda (Required - Choose 1)</h3>
                                     <label><input type="radio" name="soda" value="Pepsi"> Pepsi</label>
                                     <label><input type="radio" name="soda" value="Diet Pepsi"> Diet Pepsi</label>
@@ -544,6 +684,10 @@
                         modal.find('.modal-content').append(`
                             <div class="popup" id="popup">
                                 <form>
+                                    <h3>Please choose a size (Required - Choose 1)</h3>
+                                    <label><input type="radio" name="size" value="Regular"> Regular (20 oz) $2.25</label>
+                                    <label><input type="radio" name="size" value="Large" data-price="0.50"> Large (32 oz) $2.75</label>
+
                                     <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
                                     <textarea placeholder="Special Instructions" name="instructions"></textarea>
                                     <button data-product={{product.id}} data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
@@ -552,9 +696,10 @@
                         `);
                     }
                         break;
+
+                        
                     case 'Sides':
                     // If the side is chips Choose a flavor
-                    console.log(name);
                     if ( name.includes('Chips') ) {
                         modal.find('.modal-content').append(`
                             <div class="popup" id="popup">
@@ -574,10 +719,42 @@
                                 </form>
                             </div>
                         `);
+                    } else if (name.includes("Deviled Egg")) {
+                        modal.find('.modal-content').append(`
+                            <div class="popup" id="popup">
+                                <form>
+                                    <h3>Choose a size (Required - Choose 1)</h3>
+                                    <label><input type="radio" name="size" value="Small"> Regular $3.00</label>
+                                    <label><input type="radio" name="size" value="Large" data-price="3.00"> Large $6.00</label>
+
+                                    <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
+                                    <textarea placeholder="Special Instructions" name="instructions"></textarea>
+                                    <button data-product={{product.id}} data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
+                                </form>
+                            </div>
+                        `);
+                    } else if (name.includes("Fries")) {
+                        modal.find('.modal-content').append(`
+                        <div class="popup" id="popup">
+                            <form>
+                                <h3>Please choose a size (Required - Choose 1)</h3>
+                                <label><input type="radio" name="size" value="Regular"> Regular $3.50</label>
+                                <label><input type="radio" name="size" value="Large" data-price="3.25"> Large $6.75</label>
+
+                                <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
+                                <textarea placeholder="Special Instructions" name="instructions"></textarea>
+                                <button data-product={{product.id}} data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
+                            </form>
+                        </div>
+                    `);
                     } else {
                         modal.find('.modal-content').append(`
                             <div class="popup" id="popup">
                                 <form>
+                                    <h3>Please choose a size (Required - Choose 1)</h3>
+                                    <label><input type="radio" name="size" value="Regular"> Regular $3.50</label>
+                                    <label><input type="radio" name="size" value="Large" data-price="3.25"> Large $6.75</label>
+
                                     <label>Quantity: <input type="number" name="quantity" value="1" min="1"></label>
                                     <textarea placeholder="Special Instructions" name="instructions"></textarea>
                                     <button data-product={{product.id}} data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
@@ -586,6 +763,8 @@
                         `);
                     } 
                         break;
+
+
                     case 'Breakfast':
                         // Meat, Egg and Cheese sandwich
                     modal.find('.modal-content').append(`
@@ -628,8 +807,7 @@
                                 <button data-product={{product.id}} data-action="add" id="addIngredientsBtn" disabled>Add Ingredients</button>
                             </form>
                         </div>
-                    `);
-                        
+                    `);           
                         break;
 
                     default:
@@ -648,44 +826,32 @@
                     // If the submit button is enabled, change the color to blue
                     modal.find('.modal-content form button').css('background-color', '#007bff');
                 }
-                if (category == 'Drinks' && !name.includes('Fountain')) {
-                    modal.find('.modal-content form button').prop('disabled', false);
-                    // If the submit button is enabled, change the color to blue
-                    modal.find('.modal-content form button').css('background-color', '#007bff');
-                }
-                if (category == 'Sides' && !name.includes('Chips')) {
-                    modal.find('.modal-content form button').prop('disabled', false);
-                    // If the submit button is enabled, change the color to blue
-                    modal.find('.modal-content form button').css('background-color', '#007bff');
-                }
 
-                // Add event listener to the form
+
+
+                // Add event listener to the form, enable or disable the submit button based on the user's choice
                 modal.find('.modal-content form').on('change', function() {
-                    // Enable the submit button if at least one ingredient is checked
-                    if (modal.find('.modal-content form input[name="hotdogs-ingredient"]:checked').length > 0) {
-                        modal.find('.modal-content form button').prop('disabled', false);
-                        // If the submit button is enabled, change the color to blue
-                    } else if(modal.find('.modal-content form input[name="soups-dressing"]:checked').length > 0 && modal.find('.modal-content form input[name="soups-topping"]:checked').length > 0) {
-                        modal.find('.modal-content form button').prop('disabled', false);
-                    } else if (modal.find('.modal-content form input[name="sandwiches-grilled-bread"]:checked').length > 0 && modal.find('.modal-content form input[name="sandwiches-grilled-cheese"]:checked').length > 0 && modal.find('.modal-content form input[name="sandwiches-grilled-topping"]:checked').length > 0) {
-                        // For Grilled Cheese sandwiches, the user must choose a cheese also
-                        modal.find('.modal-content form button').prop('disabled', false);
 
-                    } else if (modal.find('.modal-content form input[name="sandwiches-bread"]:checked').length > 0 && modal.find('.modal-content form input[name="sandwiches-topping"]:checked').length > 0) {
-                        // For general sandwiches, the user must choose a bread, and at least one topping
-                        modal.find('.modal-content form button').prop('disabled', false);
+                    const inputElements = modal.find('.modal-content form input');
+                    const groupStatus = {};
+                    inputElements.each(function() {
+                        const name = $(this).attr('name');
+                        if (groupStatus[name] === undefined) {
+                            groupStatus[name] = false;
+                        }
+                        if ($(this).prop('checked')) {
+                            groupStatus[name] = true;
+                        }
 
-                    } else if (modal.find('.modal-content form input[name="soda"]:checked').length > 0) {
+                        groupStatus["quantity"] = true;
+                    });
+
+                    const allGroupsChecked = Object.values(groupStatus).every(v => v === true);
+                    console.log(groupStatus)
+                    console.log(allGroupsChecked);
+                    if (allGroupsChecked) {
                         modal.find('.modal-content form button').prop('disabled', false);
-                    } else if (modal.find('.modal-content form input[name="flavor"]:checked').length > 0) {
-                        modal.find('.modal-content form button').prop('disabled', false);
-                    } else if (modal.find('.modal-content form input[name="combo-bread"]:checked').length > 0 && modal.find('.modal-content form input[name="combo-topping"]:checked').length > 0 && modal.find('.modal-content form input[name="combo-side"]:checked').length > 0 && modal.find('.modal-content form input[name="combo-soda"]:checked').length > 0) {
-                        modal.find('.modal-content form button').prop('disabled', false);
-                    } else if (modal.find('.modal-content form input[name="meat"]:checked').length > 0 && modal.find('.modal-content form input[name="cheese"]:checked').length > 0 && modal.find('.modal-content form input[name="bread"]:checked').length > 0 && modal.find('.modal-content form input[name="topping"]:checked').length > 0) {
-                        modal.find('.modal-content form button').prop('disabled', false);
-                    }
-                    
-                    else {
+                    } else {
                         modal.find('.modal-content form button').prop('disabled', true);
                     }
 
@@ -694,9 +860,7 @@
                     if (category == 'Desserts') {
                         modal.find('.modal-content form button').prop('disabled', false);
                     }
-                    if (category == 'Drinks' && !name.includes('Fountain')) {
-                        modal.find('.modal-content form button').prop('disabled', false);
-                    }
+
                     // If the submit button is enabled, change the color to blue
                     if (modal.find('.modal-content form button').prop('disabled') == false) {
                         modal.find('.modal-content form button').css('background-color', '#007bff');
@@ -704,17 +868,16 @@
                         modal.find('.modal-content form button').css('background-color', '#ccc');
                     }
 
-                    if (category == 'Sides' && !name.includes('Chips')) {
-                        modal.find('.modal-content form button').prop('disabled', false);
-                        // If the submit button is enabled, change the color to blue
-                        modal.find('.modal-content form button').css('background-color', '#007bff');
-                    }
-                    const sideRadioInputs = modal.find('input[name="combo-side"]');
+                    // If the user click differen size of the food and side that has different price, update the price
+                    const sideRadioInputs = modal.find('input[name="side"]');
                     const selectedSide = sideRadioInputs.filter(':checked');
+                    const sizeRadioInputs = modal.find('input[name="size"]');
+                    const selectedSize = sizeRadioInputs.filter(':checked');
+
                     // If the user clicks quantity input field, calculate the price based on the quantity
                     const quantity = modal.find('.modal-content form input[name="quantity"]').val();
                     console.log(selectedSide.data('price'));
-                    const price = parseFloat(button.data('price')) + (parseFloat(selectedSide.data('price')) || 0);
+                    const price = parseFloat(button.data('price')) + (parseFloat(selectedSide.data('price')) || 0) + (parseFloat(selectedSize.data('price')) || 0);
                     currentProductPrice = price;
                     console.log(price);
                     const total = quantity * price;
@@ -724,16 +887,17 @@
 
                 // If the user clicks the add ingredients button, add the ingredients to the cart
                 modal.find('.modal-content form button').on('click', function() {
+                    // If combo conver the string with input name, example => "Size:{Large} Topping:{Add Lettuce, Add Tomato} Side:{Fries} Drinks:{Pepsi}"
+                    let selectedIngredients;
+                    selectedIngredients = "";
+                    const inputElements = modal.find('.modal-content form input');
+                    inputElements.each(function() {
+                        const name = $(this).attr('name');
+                        if ($(this).prop('checked')) {
+                            selectedIngredients += `${name}:{${$(this).val()}}. `;
+                        }
+                    });
 
-
-                    // Conbine all the selected checkbox and radio into a string
-                    const selectedRadio = Array.from(document.querySelectorAll('input[type="radio"]:checked'))
-                    const selectedCheckbox = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'));
-                    const selectedIngredients = selectedRadio.concat(selectedCheckbox).map(i => i.value).join(', ');
-                    console.log(selectedIngredients);
-                    
-
-                    
                 
                     // Get the instructions from the textarea and combine them with the selected ingredients. Start with a new line and add the word "Special instructions: " before the instructions
                     let instructions = ""
@@ -794,4 +958,5 @@
 
 
       </script>
+      <script src="{% static 'js/store.js' %}"></script>
       {% endblock content %}
