@@ -1,7 +1,21 @@
 html{
 	scroll-behavior: smooth;
 }
+@media (max-width: 768px) {
+	/* Custom styles for screens less than 768px wide */
 
+	.add-btn{
+		display: relative;
+		font-size: small;
+	}
+
+	#price{
+		display: relative;
+		font-size: small;
+	}
+
+}
+  
 body{
 	background-color: hsl(0, 0%, 98%);
 }

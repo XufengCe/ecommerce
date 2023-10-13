@@ -12,8 +12,8 @@
 
                 <table class="table">
                     <tr>
-                        <th><h5>Items: <Strong>{{order.get_cart_items}}</Strong></h5></th>
-                        <th><h5>Total: <Strong>${{order.get_cart_total|floatformat:2}}</Strong></h5></th>
+                        <th><h5>Items: <Strong id="grandItems">{{order.get_cart_items}}</Strong></h5></th>
+                        <th><h5>Total: <Strong id="grandTotal">${{order.get_cart_total|floatformat:2}}</Strong></h5></th>
                         <th>
                             <a style="float:right; margin:5px" class="btn btn-success" id="checkout" href="{% url 'checkout' %}">Checkout</a>
                         </th>
@@ -34,7 +34,7 @@
 
             {% for item in items %}
             <div class="box-element">
-                <div class="cart-row">
+                <div class="cart-row" id="cart-row-{{item.item_id}}">
                     <div style="flex:2" ><img class="row-image" src="{{item.product.imageURL}}"></div>
                     <div style="flex:2" >{{item.product.name}}</div>
                     <div style="flex:1" >{{item.price|floatformat:2}}</div>
@@ -42,12 +42,12 @@
                     <div style="flex:1" >
                         <p class="quantity">{{item.quantity}}</p>
                         <div class="quantity"> 
-                            <img data-product="{{item.product.id}}" data-action="add" data-description="{{item.description}}" class="chg-quantity update-cart" src="{% static 'images/arrow-up.png' %}">
-                            <img data-product="{{item.product.id}}" data-action="remove" data-description="{{item.description}}" class="chg-quantity update-cart" src="{% static 'images/arrow-down.png' %}">
+                            <img data-item="{{item.item_id}}" data-action="add" data-description="{{item.description}}" class="chg-quantity update-cart" src="{% static 'images/arrow-up.png' %}">
+                            <img data-item="{{item.item_id}}" data-action="remove" data-description="{{item.description}}" class="chg-quantity update-cart" src="{% static 'images/arrow-down.png' %}">
                         </div>
 
                     </div>
-                    <div style="flex:1" >${{item.get_total|floatformat:2}}</div>
+                    <div id="itemTotal" style="flex:1" >${{item.get_total|floatformat:2}}</div>
                 </div>
             </div>
             {% endfor %}

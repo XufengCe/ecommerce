@@ -57,6 +57,7 @@
             </div>
 
             <form class="box-element hidden" id="phoneForm">
+                {% csrf_token %}
                 <input required class="form-controll" type="text" name="name" placeholder="Name..">
                 <label for="phoneNumber">Enter Your phoneNumber to get verification code:</label>
                 <input type="text" id="phoneNumber" placeholder="4445556666" pattern="\d{3}\d{3}\d{4}" required autocomplete="tel">
@@ -185,14 +186,15 @@
             
 
         })
-
+        csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
         document.getElementById("phoneForm").addEventListener("submit", function(event) {
             event.preventDefault();
             const loadingSpinner = document.getElementById('loading-spinner');
-            name = document.getElementById("phoneForm").elements[0].value;
+            name = document.getElementById("phoneForm").elements[1].value;
             phoneNumber = document.getElementById("phoneNumber").value;
             const phoneNumberRegex = /^\d{3}\d{3}\d{4}$/;
             let otp_number = null;
+            
             if (phoneNumberRegex.test(phoneNumber)) {
               // Do your submit action here
               var url = '/send_otp/'

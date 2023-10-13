@@ -37,8 +37,8 @@
   
   <div class="row">
   {% for product in hotdogs %} 
-      <div class="col-lg-3">
-          <img class="thumbnail" src="{{product.imageURL}}">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+          <img class="thumbnail img-fluid" src="{{product.imageURL}}">
           <div class="box-element product">
             <h6><Strong>{{product.name}}</Strong></h6>
             <div class="description">
@@ -64,7 +64,7 @@
 
   <div class="row">
   {% for product in soups %} 
-      <div class="col-lg-3">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
           <img class="thumbnail" src="{{product.imageURL}}">
           <div class="box-element product">
             <h6><Strong>{{product.name}}</Strong></h6>
@@ -90,7 +90,7 @@
   <H2>Desserts</H2>
   <div class="row">
   {% for product in desserts %}
-      <div class="col-lg-3">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
           <img class="thumbnail" src="{{product.imageURL}}">
           <div class="box-element product">
             <h6><Strong>{{product.name}}</Strong></h6>
@@ -116,7 +116,7 @@
   <H2>Sandwiches</H2>
   <div class="row">
   {% for product in sandwiches %}
-      <div class="col-lg-3">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
           <img class="thumbnail" src="{{product.imageURL}}">
           <div class="box-element product">
             <h6><Strong>{{product.name}}</Strong></h6>
@@ -145,7 +145,7 @@
   <H2>Drinks</H2>
   <div class="row">
   {% for product in drinks %}
-      <div class="col-lg-3">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
           <img class="thumbnail" src="{{product.imageURL}}">
           <div class="box-element product">
               <h6><Strong>{{product.name}}</Strong></h6>
@@ -171,7 +171,7 @@
   <H2>Sides</H2>
   <div class="row">
   {% for product in sides %}
-      <div class="col-lg-3">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
           <img class="thumbnail" src="{{product.imageURL}}">
           <div class="box-element product">
             <h6><Strong>{{product.name}}</Strong></h6>
@@ -197,7 +197,7 @@
   <H2>Breakfast</H2>
   <div class="row">
   {% for product in breakfast %}
-      <div class="col-lg-3">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-6">
           <img class="thumbnail" src="{{product.imageURL}}">
           <div class="box-element product">
             <h6><Strong>{{product.name}}</Strong></h6>
@@ -884,7 +884,7 @@
                     modal.find('.modal-content form button').html(`Add Ingredients - $${total.toFixed(2)}`);
                     
                 });
-
+                let scrollTopPosition = $(window).scrollTop();
                 // If the user clicks the add ingredients button, add the ingredients to the cart
                 modal.find('.modal-content form button').on('click', function() {
                     // If combo conver the string with input name, example => "Size:{Large} Topping:{Add Lettuce, Add Tomato} Side:{Fries} Drinks:{Pepsi}"
@@ -927,16 +927,25 @@
                         console.log('productId:', productId, 'action:', action)
                         console.log('USER:', user)
                         if (user == 'AnonymousUser'){
-                            addCookieItem(productId, action, ingredients)
+                            const addToCart = true;
+                            addCookieItem(productId, action, ingredients, addToCart)
+                            // Stay on the same page at the same position
+                            
                         }else{
                             updateUserOrder(productId, action, ingredients)
                         }
                 
                     }
-                
-                    // popup.style.display = 'none';
-                    // overlay.style.display = 'none';
+                    // If the user clicks the add ingredients button, close the modal
+                    modal.modal('hide');
+                    // If the user clicks the add ingredients button, close the popup
+                    modal.find('.modal-content form').remove();
+                    const currentQuantity = parseInt(document.querySelector('#cart-total').textContent);
+                    document.querySelector('#cart-total').textContent = currentQuantity + parseInt(quantity);
+                    
+                    
                 });
+                
             });
 
             // If the user type in the quantity input field, calculate the price based on the quantity and update the price

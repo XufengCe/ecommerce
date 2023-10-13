@@ -44,7 +44,7 @@ def store(request):
 
     context = {'products': products, 'cartItems': cartItems, 'hotdogs': hotdogs, 'soups': soups, 'desserts': desserts, 'sandwiches': sandwiches, 'drinks': drinks, 'sides': sides, 'breakfast': breakfast}
     return render(request, 'store/store.html', context)
-
+# This function is used to sort the sandwiches by name
 def custom_order(product):
     name_lower = product.name.lower()
     base_name = name_lower
@@ -90,7 +90,8 @@ def verify(request):
     
     context = {'items': items, 'order': order, 'cartItems': cartItems}
     return render(request, 'assets/index.html', context)
-
+from django.views.decorators.csrf import csrf_exempt
+@csrf_exempt
 def send_otp(request):
     data = json.loads(request.body)
     phone_number = data['phone_number']
@@ -149,7 +150,7 @@ def verify_otp(request):
     #     return JsonResponse('Otp not verified', safe=False)
 
 
-    time.sleep(5)
+
     if processOrder(request).status_code == 200:
         return JsonResponse('Otp verified', safe=False)
     else:
@@ -191,7 +192,7 @@ def updateItem(request):
 
     return JsonResponse('Item was added', safe=False)
 
-from django.views.decorators.csrf import csrf_exempt
+
 @csrf_exempt
 @transaction.atomic
 def processOrder(request):

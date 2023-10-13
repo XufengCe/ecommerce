@@ -19,8 +19,7 @@ def cookieCart(request):
         try:
             cartItems += cart[i]['quantity']
 
-            product = Product.objects.get(id=i.split('-')[0])
-            
+            product = Product.objects.get(id=cart[i]['productId'])            
             
             price = calculate_price(product, cart[i]['description'])
             total = price * cart[i]['quantity']
@@ -39,7 +38,6 @@ def cookieCart(request):
                 'description':cart[i]['description'].replace("undefined", ''),
                 'get_total':total
             }
-            
             items.append(item)
             if product.digital == False:
                 order['shipping'] = True
@@ -162,3 +160,6 @@ def calculate_price(product, description):
         if "Large" in description:
             return product.price + Decimal('0.50')
     return product.price
+
+
+
