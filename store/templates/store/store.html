@@ -251,7 +251,7 @@
                 console.log(combo)
                 console.log(typeof combo)
                 console.log(button)
-                const comboString = `<h3>Choose a side (Required - Choose 1)</h3>
+                const comboString = `<h5>Choose a side (Required - Choose 1)</h5>
                 <label><input type="radio" name="side" value="Lays Plain"> Lays Plain</label>
                 <label><input type="radio" name="side" value="Slaw" data-price="0.40" readonly> Slaw + $0.40</label>
                 <label><input type="radio" name="side" value="Potato Salad" data-price="0.40" readonly> Potato Salad + $0.40</label>
@@ -266,7 +266,7 @@
                 <label><input type="radio" name="side" value="Fries" data-price="0.40" readonly> Fries + $0.40</label>
 
 
-                <h3>Choose a soda (Required - Choose 1)</h3>
+                <h5>Choose a soda (Required - Choose 1)</h5>
                 <label><input type="radio" name="soda" value="Pepsi"> Pepsi</label>
                 <label><input type="radio" name="soda" value="Diet Pepsi"> Diet Pepsi</label>
                 <label><input type="radio" name="soda" value="Mountain Dew"> Mountain Dew</label>
@@ -288,28 +288,28 @@
                 // BLT sandwich, egg salad sandwich, pimento cheese sandwich, and grilled cheese sandwich are special cases
                 // BLT sandwich[7.25, 8.75], egg salad sandwich[5.50, 6.75], pimento cheese sandwich[5.50, 6.75], and grilled cheese sandwich[4.25, 5.40]
                 // BLT sandwich combo[11.50, 13.00], egg salad sandwich combo[9.55, 11.00], pimento cheese sandwich combo[8.90, 10.05], and grilled cheese sandwich combo[7.65, 8.80]
-                const BLT_Size = `<h3>Please choose a size (Required - Choose 1)</h3>
+                const BLT_Size = `<h5>Please choose a size (Required - Choose 1)</h5>
                 <label><input type="radio" name="size" value="Regular"> Regular $7.25</label>
                 <label><input type="radio" name="size" value="Large" data-price="1.50"> Large $8.75</label>`
-                const BLT_SizeCombo = `<h3>Please choose a size (Required - Choose 1)</h3>
+                const BLT_SizeCombo = `<h5>Please choose a size (Required - Choose 1)</h5>
                 <label><input type="radio" name="size" value="Regular"> Regular $11.50</label>
                 <label><input type="radio" name="size" value="Large" data-price="1.50"> Large $13.00</label>`
-                const Egg_SaladSize = `<h3>Please choose a size (Required - Choose 1)</h3>
+                const Egg_SaladSize = `<h5>Please choose a size (Required - Choose 1)</h5>
                 <label><input type="radio" name="size" value="Regular"> Regular $5.50</label>
                 <label><input type="radio" name="size" value="Large" data-price="1.25"> Large $6.75</label>`
-                const Egg_SaladSizeCombo = `<h3>Please choose a size (Required - Choose 1)</h3>
+                const Egg_SaladSizeCombo = `<h5>Please choose a size (Required - Choose 1)</h5>
                 <label><input type="radio" name="size" value="Regular"> Regular $9.55</label>
                 <label><input type="radio" name="size" value="Large" data-price="1.45"> Large $11.00</label>`
-                const Pimento_CheeseSize = `<h3>Please choose a size (Required - Choose 1)</h3>
+                const Pimento_CheeseSize = `<h5>Please choose a size (Required - Choose 1)</h5>
                 <label><input type="radio" name="size" value="Regular"> Regular $5.50</label>
                 <label><input type="radio" name="size" value="Large" data-price="1.25"> Large $6.75</label>`
-                const Pimento_CheeseSizeCombo = `<h3>Please choose a size (Required - Choose 1)</h3>
+                const Pimento_CheeseSizeCombo = `<h5>Please choose a size (Required - Choose 1)</h5>
                 <label><input type="radio" name="size" value="Regular"> Regular $8.90</label>
                 <label><input type="radio" name="size" value="Large" data-price="1.15"> Large $10.05</label>`
-                const Grilled_CheeseSize = `<h3>Please choose a size (Required - Choose 1)</h3>
+                const Grilled_CheeseSize = `<h5>Please choose a size (Required - Choose 1)</h5>
                 <label><input type="radio" name="size" value="Regular"> Regular $4.25</label>
                 <label><input type="radio" name="size" value="Large" data-price="1.15"> Large $5.40</label>`
-                const Grilled_CheeseSizeCombo = `<h3>Please choose a size (Required - Choose 1)</h3>
+                const Grilled_CheeseSizeCombo = `<h5>Please choose a size (Required - Choose 1)</h5>
                 <label><input type="radio" name="size" value="Regular"> Regular $7.65</label>
                 <label><input type="radio" name="size" value="Large" data-price="1.15"> Large $8.80</label>`
                 
@@ -324,7 +324,7 @@
                                 <div class="popup" id="popup">
                                     <h2>Choose sides for Hotdogs combo (required).</h2>
                                     <form>
-                                        <h3>Choose your dressings (Required - Choose at least 1)</h3>
+                                        <h5>Choose your dressings (Required - Choose at least 1)</h5>
                                         <label><input type="checkbox" name="topping" value="Add Mustard"> Add Mustard</label>
                                         <label><input type="checkbox" name="topping" value="Add Ketchup"> Add Ketchup</label>
                                         <label><input type="checkbox" name="topping" value="Add Chili"> Add Chili</label>
@@ -383,7 +383,7 @@
                             modal.find('.modal-content').append(`
                                 <div class="popup" id="popup">
                                     <form>
-                                        <h3>Choose a dressing (Required - Choose 1)</h3>
+                                        <h5>Choose a dressing (Required - Choose 1)</h5>
                                         <label><input type="radio" name="soups-dressing" value="Ranch Dressing"> Ranch Dressing</label>
                                         <label><input type="radio" name="soups-dressing" value="Italian Dressing"> Italian Dressing</label>
                                         <label><input type="radio" name="soups-dressing" value="French Dressing"> French Dressing</label>
@@ -391,7 +391,7 @@
                                         <label><input type="radio" name="soups-dressing" value="Honey Mustard Dressing"> Honey Mustard Dressing</label>
                                         
                                         
-                                        <h3>Would you like toppings? (Required - Choose a minimum of 1)</h3>
+                                        <h5>Would you like toppings? (Required - Choose a minimum of 1)</h5>
                                         <label><input type="checkbox" name="topping" value="Add Lettuce"> Lettuce</label>
                                         <label><input type="checkbox" name="topping" value="Add Tomato"> Tomato</label>
                                         <label><input type="checkbox" name="topping" value="Add Cucumber"> Cucumber</label>
@@ -415,7 +415,7 @@
                             modal.find('.modal-content').append(`
                                 <div class="popup" id="popup">
                                     <form>
-                                        <h3>Choose a dressing (Required - Choose 1)</h3>
+                                        <h5>Choose a dressing (Required - Choose 1)</h5>
                                         <label><input type="radio" name="soups-dressing" value="Ranch Dressing"> Ranch Dressing</label>
                                         <label><input type="radio" name="soups-dressing" value="Italian Dressing"> Italian Dressing</label>
                                         <label><input type="radio" name="soups-dressing" value="French Dressing"> French Dressing</label>
@@ -423,7 +423,7 @@
                                         <label><input type="radio" name="soups-dressing" value="Honey Mustard Dressing"> Honey Mustard Dressing</label>
                                         
                                         
-                                        <h3>Would you like toppings? (Required - Choose a minimum of 1)</h3>
+                                        <h5>Would you like toppings? (Required - Choose a minimum of 1)</h5>
                                         <label><input type="checkbox" name="topping" value="Add Lettuce"> Lettuce</label>
                                         <label><input type="checkbox" name="topping" value="Add Tomato"> Tomato</label>
                                         <label><input type="checkbox" name="topping" value="Add Cucumber"> Cucumber</label>
@@ -480,18 +480,18 @@
                             modal.find('.modal-content').append(`
                             <div class="popup" id="popup">
                                 <form>` + str + `
-                                    <h3>Choose a bread (Required - Choose 1)</h3>
+                                    <h5>Choose a bread (Required - Choose 1)</h5>
                                     <label><input type="radio" name="bread" value="White Bread"> White Bread</label>
                                     <label><input type="radio" name="bread" value="Wheat Bread"> Wheat Bread</label>
                                     <label><input type="radio" name="bread" value="Rye Bread"> Rye Bread</label>
     
-                                    <h3>Choose a cheese (Required - Choose 1)</h3>
+                                    <h5>Choose a cheese (Required - Choose 1)</h5>
                                     <label><input type="radio" name="cheese" value="American Cheese"> American Cheese</label>
                                     <label><input type="radio" name="cheese" value="Provolone Cheese"> Provolone Cheese</label>
                                     <label><input type="radio" name="cheese" value="Swiss Cheese"> Swiss Cheese</label>
                                     <label><input type="radio" name="cheese" value="Pepper Jack"> Pepper Jack</label>
     
-                                    <h3>Would you like toppings? (Optional - Choose as many as you like)</h3>
+                                    <h5>Would you like toppings? (Optional - Choose as many as you like)</h5>
                                     <label><input type="checkbox" name="topping" value="Add Lettuce"> Add Lettuce</label>
                                     <label><input type="checkbox" name="topping" value="Add Tomato"> Add Tomato</label>
                                     <label><input type="checkbox" name="topping" value="Add Mayo"> Add Mayo</label>
@@ -519,16 +519,16 @@
                             modal.find('.modal-content').append(`
                                 <div class="popup" id="popup">
                                     <form>
-                                        <h3>Please choose a size (Required - Choose 1)</h3>
+                                        <h5>Please choose a size (Required - Choose 1)</h5>
                                         <label><input type="radio" name="size" value="Regular" readonly> Regular $11.25</label>
                                         <label><input type="radio" name="size" value="Large" data-price="1.50" readonly> Large $12.75</label>
 
-                                        <h3>Choose a bread (Required - Choose 1)</h3>
+                                        <h5>Choose a bread (Required - Choose 1)</h5>
                                         <label><input type="radio" name="bread" value="White Bread"> White Bread</label>
                                         <label><input type="radio" name="bread" value="Wheat Bread"> Wheat Bread</label>
                                         <label><input type="radio" name="bread" value="Rye Bread"> Rye Bread</label>
 
-                                        <h3>Would you like toppings? (Optional - Choose as many as you like)</h3>
+                                        <h5>Would you like toppings? (Optional - Choose as many as you like)</h5>
                                         <label><input type="checkbox" name="topping" value="Add Lettuce"> Add Lettuce</label>
                                         <label><input type="checkbox" name="topping" value="Add Tomato"> Add Tomato</label>
                                         <label><input type="checkbox" name="topping" value="Add Mayo"> Add Mayo</label>
@@ -564,18 +564,18 @@
                             modal.find('.modal-content').append(`
                             <div class="popup" id="popup">
                                 <form>` + str + `
-                                    <h3>Choose a bread (Required - Choose 1)</h3>
+                                    <h5>Choose a bread (Required - Choose 1)</h5>
                                     <label><input type="radio" name="bread" value="White Bread"> White Bread</label>
                                     <label><input type="radio" name="bread" value="Wheat Bread"> Wheat Bread</label>
                                     <label><input type="radio" name="bread" value="Rye Bread"> Rye Bread</label>
     
-                                    <h3>Choose a cheese (Required - Choose 1)</h3>
+                                    <h5>Choose a cheese (Required - Choose 1)</h5>
                                     <label><input type="radio" name="cheese" value="American Cheese"> American Cheese</label>
                                     <label><input type="radio" name="cheese" value="Provolone Cheese"> Provolone Cheese</label>
                                     <label><input type="radio" name="cheese" value="Swiss Cheese"> Swiss Cheese</label>
                                     <label><input type="radio" name="cheese" value="Pepper Jack"> Pepper Jack</label>
     
-                                    <h3>Would you like toppings? (Optional - Choose as many as you like)</h3>
+                                    <h5>Would you like toppings? (Optional - Choose as many as you like)</h5>
                                     <label><input type="checkbox" name="topping" value="Add Lettuce"> Add Lettuce</label>
                                     <label><input type="checkbox" name="topping" value="Add Tomato"> Add Tomato</label>
                                     <label><input type="checkbox" name="topping" value="Add Mayo"> Add Mayo</label>
@@ -607,15 +607,16 @@
                             modal.find('.modal-content').append(`
                                 <div class="popup" id="popup">
                                     <form>
-                                        <h3>Please choose a size (Required - Choose 1)</h3>
-                                        <label><input type="radio" name="size" value="Regular" readonly> Regular $11.25</label>
-                                        <label><input type="radio" name="size" value="Large" data-price="1.50" readonly> Large $12.75</label>
+                                        <h5>Please choose a size (Required - Choose 1)</h5>
+                                        <label><input type="radio" name="size" value="Regular" readonly> Regular $7.60</label>
+                                        <label><input type="radio" name="size" value="Large" data-price="1.50" readonly> Large $9.10</label>
 
-                                        <h3>Choose a bread (Required - Choose 1)</h3>
+                                        <h5>Choose a bread (Required - Choose 1)</h5>
                                         <label><input type="radio" name="bread" value="White Bread"> White Bread</label>
                                         <label><input type="radio" name="bread" value="Wheat Bread"> Wheat Bread</label>
                                         <label><input type="radio" name="bread" value="Rye Bread"> Rye Bread</label>
 
+                                        <h5>Would you like toppings? (Optional - Choose as many as you like)</h5>
                                         <label><input type="checkbox" name="topping" value="Add Lettuce"> Add Lettuce</label>
                                         <label><input type="checkbox" name="topping" value="Add Tomato"> Add Tomato</label>
                                         <label><input type="checkbox" name="topping" value="Add Mayo"> Add Mayo</label>
@@ -656,11 +657,11 @@
                         modal.find('.modal-content').append(`
                             <div class="popup" id="popup">
                                 <form>
-                                    <h3>Please choose a size (Required - Choose 1)</h3>
+                                    <h5>Please choose a size (Required - Choose 1)</h5>
                                     <label><input type="radio" name="size" value="Regular"> Regular (20 oz) $2.50</label>
                                     <label><input type="radio" name="size" value="Large" data-price="0.50"> Large (32 oz) $3.00</label>
 
-                                    <h3>Choose a soda (Required - Choose 1)</h3>
+                                    <h5>Choose a soda (Required - Choose 1)</h5>
                                     <label><input type="radio" name="soda" value="Pepsi"> Pepsi</label>
                                     <label><input type="radio" name="soda" value="Diet Pepsi"> Diet Pepsi</label>
                                     <label><input type="radio" name="soda" value="Mountain Dew"> Mountain Dew</label>
@@ -684,7 +685,7 @@
                         modal.find('.modal-content').append(`
                             <div class="popup" id="popup">
                                 <form>
-                                    <h3>Please choose a size (Required - Choose 1)</h3>
+                                    <h5>Please choose a size (Required - Choose 1)</h5>
                                     <label><input type="radio" name="size" value="Regular"> Regular (20 oz) $2.25</label>
                                     <label><input type="radio" name="size" value="Large" data-price="0.50"> Large (32 oz) $2.75</label>
 
@@ -704,7 +705,7 @@
                         modal.find('.modal-content').append(`
                             <div class="popup" id="popup">
                                 <form>
-                                    <h3>Choose a flavor (Required - Choose 1)</h3>
+                                    <h5>Choose a flavor (Required - Choose 1)</h5>
                                     <label><input type="radio" name="flavor" value="Lays Plain"> Lays Plain</label>
                                     <label><input type="radio" name="flavor" value="Lays BBQ"> Lays BBQ</label>
                                     <label><input type="radio" name="flavor" value="Jalapeno Kettle Chips"> Jalapeno Kettle Chips</label>
@@ -723,7 +724,7 @@
                         modal.find('.modal-content').append(`
                             <div class="popup" id="popup">
                                 <form>
-                                    <h3>Choose a size (Required - Choose 1)</h3>
+                                    <h5>Choose a size (Required - Choose 1)</h5>
                                     <label><input type="radio" name="size" value="Small"> Regular $3.00</label>
                                     <label><input type="radio" name="size" value="Large" data-price="3.00"> Large $6.00</label>
 
@@ -737,7 +738,7 @@
                         modal.find('.modal-content').append(`
                         <div class="popup" id="popup">
                             <form>
-                                <h3>Please choose a size (Required - Choose 1)</h3>
+                                <h5>Please choose a size (Required - Choose 1)</h5>
                                 <label><input type="radio" name="size" value="Regular"> Regular $3.50</label>
                                 <label><input type="radio" name="size" value="Large" data-price="3.25"> Large $6.75</label>
 
@@ -751,7 +752,7 @@
                         modal.find('.modal-content').append(`
                             <div class="popup" id="popup">
                                 <form>
-                                    <h3>Please choose a size (Required - Choose 1)</h3>
+                                    <h5>Please choose a size (Required - Choose 1)</h5>
                                     <label><input type="radio" name="size" value="Regular"> Regular $3.50</label>
                                     <label><input type="radio" name="size" value="Large" data-price="3.25"> Large $6.75</label>
 
@@ -770,27 +771,27 @@
                     modal.find('.modal-content').append(`
                         <div class="popup" id="popup">
                             <form>
-                                <h3>Choose a meat (Required - Choose 1)</h3>
+                                <h5>Choose a meat (Required - Choose 1)</h5>
                                 <label><input type="radio" name="meat" value="pork-roll"> Pork Roll</label>
                                 <label><input type="radio" name="meat" value="bacon"> Bacon</label>
                                 <label><input type="radio" name="meat" value="sausage"> Sausage</label>
                                 <label><input type="radio" name="meat" value="ham"> Ham</label>
                                 <label><input type="radio" name="meat" value="turkey-sausage"> Turkey Sausage</label>
 
-                                <h3>Choose a cheese (Required - Choose 1)</h3>
+                                <h5>Choose a cheese (Required - Choose 1)</h5>
                                 <label><input type="radio" name="cheese" value="american"> American</label>
                                 <label><input type="radio" name="cheese" value="swiss"> Swiss</label>
                                 <label><input type="radio" name="cheese" value="provolone"> Provolone</label>
                                 <label><input type="radio" name="cheese" value="pepper-jack"> Pepper Jack</label>
 
-                                <h3>Choose a bread (Required - Choose 1)</h3>
+                                <h5>Choose a bread (Required - Choose 1)</h5>
                                 <label><input type="radio" name="bread" value="kaiser-roll"> Kaiser Roll</label>
                                 <label><input type="radio" name="bread" value="croissant"> Croissant</label>
                                 <label><input type="radio" name="bread" value="white-bread"> White Bread</label>
                                 <label><input type="radio" name="bread" value="wheat-bread"> Wheat Bread</label>
                                 <label><input type="radio" name="bread" value="rye-bread"> Rye Bread</label>
 
-                                <h3>Would you like toppings? (Optional - Choose as many as you like)</h3>
+                                <h5>Would you like toppings? (Optional - Choose as many as you like)</h5>
                                 <label><input type="checkbox" name="topping" value="salt"> Salt</label>
                                 <label><input type="checkbox" name="topping" value="pepper"> Pepper</label>
                                 <label><input type="checkbox" name="topping" value="ketchup"> Ketchup</label>

@@ -18,11 +18,20 @@
 
     <nav class="navbar sticky-top navbar-expand-sm navbar-dark bg-dark">
       <a class="navbar-brand" href="{% url 'store' %}">Steve's Place</a>
+      <div class="form-inline my-2 my-lg-0">
+          
+        {% comment %} <a href="#"class="btn btn-warning">Login</a> {% endcomment %}
+        
+        <a href="{% url 'cart' %}">
+            <img  id="cart-icon" src="{% static 'images/cart.png' %}">
+        </a>
+        <p id="cart-total">{{cartItems}}</p>
 
+      </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-    
+      
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 
@@ -30,16 +39,7 @@
         {% block navigation %}{% endblock %}
 
         
-        <div class="form-inline my-2 my-lg-0">
-          
-          {% comment %} <a href="#"class="btn btn-warning">Login</a> {% endcomment %}
-          
-          <a href="{% url 'cart' %}">
-              <img  id="cart-icon" src="{% static 'images/cart.png' %}">
-          </a>
-          <p id="cart-total">{{cartItems}}</p>
 
-        </div>
       </div>
     </nav>
     <script type="text/javascript">

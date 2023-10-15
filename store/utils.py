@@ -120,7 +120,7 @@ def calculate_price(product, description):
     specialCase = {'BLT Sandwich': [Decimal('7.25'), Decimal('8.75')], 'Egg Salad Sandwich': [Decimal('5.50'), Decimal('6.75')], 'Pimento Cheese Sandwich': [Decimal('5.50'), Decimal('6.75')], 'Grilled Cheese Sandwich': [Decimal('4.25'), Decimal('5.40')]}
     specialCaseCombo = {'BLT Sandwich Combo': [Decimal('11.50'), Decimal('13.00')], 'Egg Salad Sandwich Combo': [Decimal('9.55'), Decimal('11.00')], 'Pimento Cheese Sandwich Combo': [Decimal('8.90'), Decimal('10.05')], 'Grilled Cheese Sandwich Combo': [Decimal('7.65'), Decimal('8.80')]}
     price = product.price
-    # Handle special case first
+    # Handle special case first - special case and special case combo
     if product.name in specialCase or product.name in specialCaseCombo:
         # Combo, Large
         if product.size and "Large" in description and product.combo:
@@ -138,15 +138,23 @@ def calculate_price(product, description):
         if any(side in description for side in sides):
             price += Decimal('0.4')
         return price
-    # For every combo, if the side is in the description, add 0.4 to the price
-    # For every combo, if the size is regular, add 0.4 to the price
+    # Regular combo and Large combo
     if product.combo:
         if product.size and "Large" in description:
             price += Decimal('1.5')
         if any(side in description for side in sides):
             price += Decimal('0.4')
         return price
-        
+    
+    # Regular and Large
+    if product.size:
+        if "Large" in description:
+            price += Decimal('1.5')
+        if any(side in description for side in sides):
+            price += Decimal('0.4')
+        return price
+
+    # Special case for sides - Large sides cost 3.00 more
     if product.category == 'Sides' and product.size:
         if "Large" in description:
             if product.name == "Deviled Eggs":
@@ -155,7 +163,8 @@ def calculate_price(product, description):
                 return product.price + Decimal('0.75')
             else:
                 return product.price + Decimal('3.25')
-
+    
+    # Special case for drinks - Large drinks cost 0.50 more
     if product.category == 'Drinks' and product.size:
         if "Large" in description:
             return product.price + Decimal('0.50')
