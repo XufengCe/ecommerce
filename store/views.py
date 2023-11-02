@@ -13,6 +13,7 @@ import time
 
 
 
+
 # Get the current working directory
 current_directory = os.path.dirname(os.path.abspath(__file__))
 
@@ -239,4 +240,24 @@ def processOrder(request):
         )
     
     return JsonResponse('Payment complete!', safe=False)
+from django.contrib.auth import authenticate
+from rest_framework import serializers
+# Define a serializer for the Order model
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = '__all__'  # Include all fields from the Order model
 
+# This method is an API for store ower to get the order information
+# Only return the orders if the user is admin
+def orderInfo(request):
+    print(request, 'request')
+    print(request.GET, 'request.GET')
+    username = request.GET.get('username')
+    password = request.GET.get('password')
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        serializer = OrderSerializer(Order.objects.all(), many=True)
+        return JsonResponse(serializer.data, safe=False)
+    else:
+        return JsonResponse('User is not admin', safe=False)

@@ -40,9 +40,15 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "store.apps.StoreConfig",
+    "rest_framework",
     # "django_apscheduler",
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+    ],
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
