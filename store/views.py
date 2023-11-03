@@ -242,11 +242,6 @@ def processOrder(request):
     return JsonResponse('Payment complete!', safe=False)
 from django.contrib.auth import authenticate
 from rest_framework import serializers
-# Define a serializer for the Order model
-class OrderSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Order
-        fields = '__all__'  # Include all fields from the Order model
 
 # This method is an API for store ower to get the order information
 # Only return the orders if the user is admin
@@ -255,9 +250,32 @@ def orderInfo(request):
     print(request.GET, 'request.GET')
     username = request.GET.get('username')
     password = request.GET.get('password')
+    id = request.GET.get('latestOrderId')
     user = authenticate(request, username=username, password=password)
     if user is not None:
-        serializer = OrderSerializer(Order.objects.all(), many=True)
-        return JsonResponse(serializer.data, safe=False)
+        # Send order data as a list of json objects
+        # For example [{{"order": {"id": 1, "date_ordered": "2023-07-22T14:01:43.801943-04:00", "complete": true, "transaction_id": "1690474732.034377", "paid": false, "phone": null, "customer": 1}, "order_items": [{"name": Red hot, "quantity": 1, "description": "size:{Large}. bread:{White Bread}. topping:{Add Tomato}. side:{Slaw}. soda:{Orange Gatorade}.", "price": "13.15"}]}}]
+        order_data = []
+        # Get the order after the latest order id
+        if id is not None:
+            orders = Order.objects.filter(id__gt=id)
+        else:
+            # Get all the orders from the database
+            orders = Order.objects.all()
+        for order in orders:
+            order_items = []
+            # Get all the order items for each order
+            order_items_objects = OrderItem.objects.filter(order=order)
+            for order_item in order_items_objects:
+                print(order_item, 'order_item')
+                if order_item is not None:
+                    # print(order_item.product, 'order_item')
+                    if order_item.product is not None:
+                        order_items.append({"name": order_item.product.name, "quantity": order_item.quantity, "description": order_item.description, "price": order_item.price})
+
+
+            order_data.append({"order": {"id": order.id, "date_ordered": order.date_ordered, "complete": order.complete, "transaction_id": order.transaction_id, "paid": order.paid, "phone": order.phone, "customer": order.customer.id}, "order_items": order_items})
+        print(order_data, 'order_data')
+        return JsonResponse(order_data, safe=False)
     else:
         return JsonResponse('User is not admin', safe=False)
